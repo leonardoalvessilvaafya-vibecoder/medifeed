@@ -80,7 +80,7 @@ const AuthorMeta = ({ item, onAuthorTap }) => (
   </div>
 );
 
-const VideoCard = ({ item, onAuthorTap, active, isMuted }) => {
+const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null);
   const fbTimer = useRef(null);
@@ -153,9 +153,9 @@ const VideoCard = ({ item, onAuthorTap, active, isMuted }) => {
         </div>
       )}
       <div onClick={e=>e.stopPropagation()} style={{position:"absolute",bottom:96,left:18,right:64,zIndex:3}}>
-        {item.refs && <a href={item.refs} target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:10,color:"rgba(255,255,255,0.55)",textDecoration:"none",fontSize:11,fontWeight:600}}>
+        {item.refs && <button onClick={e=>{e.stopPropagation();onRefsTap&&onRefsTap();}} style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:10,background:"none",border:"none",padding:0,cursor:"pointer",color:"rgba(255,255,255,0.55)",fontSize:11,fontWeight:600}}>
           <span className="material-symbols-rounded" style={{fontSize:14,fontVariationSettings:"'FILL' 0,'wght' 300"}}>menu_book</span>Referências
-        </a>}
+        </button>}
         <h2 style={{color:"white",fontSize:20,fontWeight:700,lineHeight:1.35,margin:0,textShadow:"0 2px 12px rgba(0,0,0,0.7)"}}>{item.title}</h2>
         <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
       </div>
@@ -174,7 +174,7 @@ const ArticleCard = ({ item, onAuthorTap }) => (
   </div>
 );
 
-const QuizCard = ({ item, onAuthorTap }) => {
+const QuizCard = ({ item, onAuthorTap, onRefsTap }) => {
   const [step,setStep]=useState(0);
   const [answers,setAnswers]=useState([]);
   const done=step>=item.questions.length;
@@ -203,18 +203,18 @@ const QuizCard = ({ item, onAuthorTap }) => {
         </div>
       )}
       <div style={{position:"absolute",bottom:96,left:18,right:64,zIndex:2}}>
-        {item.refs && <a href={item.refs} target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:8,color:"rgba(255,255,255,0.5)",textDecoration:"none",fontSize:11,fontWeight:600}}><span className="material-symbols-rounded" style={{fontSize:14,fontVariationSettings:"'FILL' 0,'wght' 300"}}>menu_book</span>Referências</a>}
+        {item.refs && <button onClick={e=>{e.stopPropagation();onRefsTap&&onRefsTap();}} style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:8,background:"none",border:"none",padding:0,cursor:"pointer",color:"rgba(255,255,255,0.5)",fontSize:11,fontWeight:600}}><span className="material-symbols-rounded" style={{fontSize:14,fontVariationSettings:"'FILL' 0,'wght' 300"}}>menu_book</span>Referências</button>}
         <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
       </div>
     </div>
   );
 };
 
-const CardContent = ({ item, onAuthorTap, active, isMuted }) => {
+const CardContent = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   if(!item) return null;
-  if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} active={active} isMuted={isMuted}/>;
+  if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} active={active} isMuted={isMuted}/>;
   if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap}/>;
-  if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap}/>;
+  if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap}/>;
   return null;
 };
 
@@ -311,10 +311,45 @@ const AuthorSheet = ({ name, onClose }) => {
   );
 };
 
+const RefsSheet = ({ refs, onClose }) => {
+  const refList = Array.isArray(refs) ? refs : [{ label: refs, url: refs }];
+  const [visible, setVisible] = useState(false);
+  const [dragY, setDragY] = useState(0);
+  const dragStart = useRef(null);
+  useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
+  const close = () => { setVisible(false); setDragY(0); setTimeout(onClose, 300); };
+  const onDS = e => { dragStart.current = e.type === "touchstart" ? e.touches[0].clientY : e.clientY; };
+  const onDM = e => { if (dragStart.current === null) return; const y = (e.type === "touchmove" ? e.touches[0].clientY : e.clientY) - dragStart.current; if (y > 0) setDragY(y); };
+  const onDE = () => { if (dragY > 80) close(); else setDragY(0); dragStart.current = null; };
+  return (
+    <div onClick={close} style={{position:"absolute",inset:0,zIndex:50,background:visible?"rgba(0,0,0,0.5)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(4px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",borderRadius:"24px 24px 0 0",background:"#ffffff",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",padding:"0 0 36px"}}>
+        <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE} style={{display:"flex",justifyContent:"center",padding:"12px 0 8px",cursor:"grab"}}>
+          <div style={{width:36,height:4,borderRadius:2,background:"rgba(0,0,0,0.15)"}}/>
+        </div>
+        <div style={{padding:"8px 24px 0"}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20,paddingBottom:16,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
+            <span className="material-symbols-rounded" style={{fontSize:22,color:"#111",fontVariationSettings:"'FILL' 0,'wght' 400"}}>menu_book</span>
+            <span style={{color:"#111",fontSize:17,fontWeight:800}}>Referências</span>
+          </div>
+          {refList.map((ref, i) => (
+            <a key={i} href={ref.url} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{display:"flex",alignItems:"center",gap:12,padding:"14px 0",borderBottom:i<refList.length-1?"1px solid rgba(0,0,0,0.07)":"none",textDecoration:"none"}}>
+              <span className="material-symbols-rounded" style={{fontSize:18,color:"#2261B1",flexShrink:0,fontVariationSettings:"'FILL' 0,'wght' 400"}}>open_in_new</span>
+              <span style={{color:"#2261B1",fontSize:13,fontWeight:600,wordBreak:"break-all",lineHeight:1.4}}>{ref.label !== ref.url ? ref.label : ref.url}</span>
+            </a>
+          ))}
+          <button onClick={close} style={{marginTop:24,width:"100%",height:52,borderRadius:26,background:"#111",border:"none",color:"white",fontSize:14,fontWeight:700,cursor:"pointer"}}>Fechar</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function MediFeed() {
   const [visibleIdx, setVisibleIdx] = useState(0);
   const [navTab, setNavTab] = useState("Descobrir");
   const [sheetAuthor, setSheetAuthor] = useState(null);
+  const [sheetRefs, setSheetRefs] = useState(null);
   const [isMuted, setIsMuted] = useState(true);
   const scrollRef = useRef(null);
   const ticking = useRef(false);
@@ -391,7 +426,7 @@ export default function MediFeed() {
             <div key={i} style={{width:"100%",height:H,flexShrink:0,
               scrollSnapAlign:"start",scrollSnapStop:"always",
               position:"relative",overflow:"hidden"}}>
-              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} active={i===visibleIdx} isMuted={isMuted}/>
+              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
         </div>
@@ -409,6 +444,7 @@ export default function MediFeed() {
         </div>
 
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
+        {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
       </div>
     </div>
   );
