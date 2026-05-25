@@ -347,7 +347,82 @@ const RefsSheet = ({ refs, onClose }) => {
   );
 };
 
+const PASS = "TesteDescobrir2026Jun";
+
+const LoginScreen = ({ onUnlock }) => {
+  const [value, setValue] = useState("");
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
+  const [shake, setShake] = useState(false);
+
+  const handleSubmit = () => {
+    if (value === PASS) {
+      onUnlock();
+    } else {
+      setError(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+    }
+  };
+
+  return (
+    <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
+      <div style={{width:393,height:852,borderRadius:44,overflow:"hidden",position:"relative",
+        boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)",
+        background:"linear-gradient(160deg,#0a1628 0%,#0d2140 50%,#0a1628 100%)",
+        display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 36px"}}>
+        <style>{`
+          @keyframes shake {
+            0%,100%{transform:translateX(0)}
+            20%,60%{transform:translateX(-8px)}
+            40%,80%{transform:translateX(8px)}
+          }
+          @keyframes loginFadeIn {
+            from{opacity:0;transform:translateY(24px)}
+            to{opacity:1;transform:translateY(0)}
+          }
+        `}</style>
+        <div style={{animation:"loginFadeIn .5s ease forwards",width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <div style={{width:72,height:72,borderRadius:22,background:"rgba(255,255,255,0.07)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.12)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:28}}>
+            <span className="material-symbols-rounded" style={{fontSize:36,color:"white",fontVariationSettings:"'FILL' 0,'wght' 300"}}>lock</span>
+          </div>
+          <div style={{color:"white",fontSize:26,fontWeight:800,marginBottom:8,letterSpacing:-0.5}}>MediFeed</div>
+          <div style={{color:"rgba(255,255,255,0.4)",fontSize:14,fontWeight:500,marginBottom:48}}>Acesso restrito</div>
+
+          <div style={{width:"100%",animation:shake?"shake .5s ease":"none"}}>
+            <div style={{position:"relative",width:"100%",marginBottom:16}}>
+              <input
+                type={show ? "text" : "password"}
+                placeholder="Digite a senha"
+                value={value}
+                onChange={e=>{ setValue(e.target.value); setError(false); }}
+                onKeyDown={e=>{ if(e.key==="Enter") handleSubmit(); }}
+                style={{width:"100%",height:56,borderRadius:16,background:"rgba(255,255,255,0.07)",
+                  backdropFilter:"blur(12px)",border:`1.5px solid ${error?"#e57373":value?"rgba(255,255,255,0.25)":"rgba(255,255,255,0.1)"}`,
+                  color:"white",fontSize:16,fontWeight:600,padding:"0 52px 0 20px",outline:"none",
+                  boxSizing:"border-box",transition:"border .2s",
+                  WebkitUserSelect:"text",userSelect:"text"}}
+              />
+              <button onClick={()=>setShow(s=>!s)} style={{position:"absolute",right:16,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",padding:0,display:"flex",alignItems:"center"}}>
+                <span className="material-symbols-rounded" style={{fontSize:20,color:"rgba(255,255,255,0.4)",fontVariationSettings:"'FILL' 0,'wght' 300"}}>{show?"visibility_off":"visibility"}</span>
+              </button>
+            </div>
+            {error && <div style={{color:"#ef9a9a",fontSize:12,fontWeight:600,marginBottom:16,textAlign:"center"}}>Senha incorreta. Tente novamente.</div>}
+            <button onClick={handleSubmit} style={{width:"100%",height:56,borderRadius:16,
+              background:"white",border:"none",color:"#0a1628",
+              fontSize:15,fontWeight:800,cursor:"pointer",letterSpacing:0.2,
+              transition:"opacity .15s",opacity:value?1:0.45}}>
+              Entrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function MediFeed() {
+  const [unlocked, setUnlocked] = useState(false);
   const [visibleIdx, setVisibleIdx] = useState(0);
   const [navTab, setNavTab] = useState("Descobrir");
   const [sheetAuthor, setSheetAuthor] = useState(null);
@@ -390,6 +465,8 @@ export default function MediFeed() {
   }, []);
 
   const item = CONTENT[visibleIdx] || CONTENT[0];
+
+  if (!unlocked) return <LoginScreen onUnlock={() => setUnlocked(true)} />; // fontes já carregadas pelo useEffect acima
 
   return (
     <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
