@@ -20,6 +20,7 @@ const getSpecialtyColor = s => {
 };
 
 const AUTHORS = {
+  "Afya": { bio:"Afya – que significa "saúde e bem-estar" no dialeto africano suaíli – nasceu da união da NRE Educacional, maior grupo de faculdades de Medicina do país (criado em 1999), com a MEDCEL, marca de cursos preparatórios para prova de residência médica. A primeira faculdade do grupo começou a operar em Tocantins, no Norte do país.\n\nCom sede em Nova Lima (MG), a Afya é uma companhia de capital aberto, com ações negociadas na bolsa de valores NASDAQ, nos Estados Unidos, desde 2019.\n\nMissão: Integrar educação e soluções para a prática médica, potencializando formação, atualização, assertividade, produtividade e conexão dos médicos com o ecossistema de saúde.\n\nPropósito: Transformar a saúde em conjunto com quem tem a Medicina como vocação." },
   "Dra. Fernanda Lima": { bio:"Médica especialista em medicina do trabalho e saúde integrativa. Doutora pela USP, com mais de 15 anos de experiência em bem-estar de profissionais de saúde. Autora do livro 'Médicos também adoecem'." },
   "Dr. Rafael Monteiro": { bio:"Cardiologista intervencionista formado pelo InCor-HCFMUSP. Fellow do American College of Cardiology. Pesquisador nas áreas de insuficiência cardíaca e dispositivos implantáveis." },
   "Dra. Camila Souza": { bio:"Endocrinologista com fellowship em diabetes e doenças da tireoide pela UNIFESP. Membro da Sociedade Brasileira de Endocrinologia e Metabologia. Apaixonada por educação médica continuada." },
@@ -368,11 +369,11 @@ const AuthorSheet = ({ name, onClose }) => {
   const onDE = () => { if(dragY>80)close(); else setDragY(0); dragStart.current=null; };
   return (
     <div onClick={close} style={{position:"absolute",inset:0,zIndex:50,background:visible?"rgba(0,0,0,0.5)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(4px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
-      <div onClick={e=>e.stopPropagation()} style={{width:"100%",borderRadius:"24px 24px 0 0",background:"#ffffff",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",padding:"0 0 32px"}}>
-        <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE} style={{display:"flex",justifyContent:"center",padding:"12px 0 8px",cursor:"grab"}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",maxHeight:"82%",borderRadius:"24px 24px 0 0",background:"#ffffff",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",display:"flex",flexDirection:"column",overflow:"hidden"}}>
+        <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE} style={{flexShrink:0,display:"flex",justifyContent:"center",padding:"12px 0 8px",cursor:"grab"}}>
           <div style={{width:36,height:4,borderRadius:2,background:"rgba(0,0,0,0.15)"}}/>
         </div>
-        <div style={{padding:"16px 24px 0"}}>
+        <div style={{flex:1,overflowY:"auto",padding:"8px 24px 32px",WebkitOverflowScrolling:"touch"}}>
           <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:20}}>
             <Avatar name={name} size={64}/>
             <div>
@@ -380,7 +381,9 @@ const AuthorSheet = ({ name, onClose }) => {
               <div style={{color:"rgba(0,0,0,0.4)",fontSize:12,marginTop:4,fontWeight:600}}>Autor(a)</div>
             </div>
           </div>
-          <p style={{color:"rgba(0,0,0,0.65)",fontSize:14,lineHeight:1.75,margin:0}}>{info.bio}</p>
+          {info.bio.split("\n\n").map((p,i)=>(
+            <p key={i} style={{color:"rgba(0,0,0,0.65)",fontSize:14,lineHeight:1.75,margin:i===0?"0 0 12px":"12px 0"}}>{p}</p>
+          ))}
           <button onClick={close} style={{marginTop:24,width:"100%",height:52,borderRadius:26,background:"#111",border:"none",color:"white",fontSize:14,fontWeight:700,cursor:"pointer"}}>Fechar</button>
         </div>
       </div>
