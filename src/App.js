@@ -41,6 +41,7 @@ const Avatar = ({ name, size=28 }) => (
 
 const VIDEOS = [
   { type:"video", specialty:"Afya News", author:"Afya", time:"22/05/2026 às 08:00", duration:2, title:"22/05/26 | Afya News: Receitas Digitais, Dulaglutida na Visão e Inovação no SUS", saves:38, likes:432, videoSrc:"https://res.cloudinary.com/dszbi9qer/video/upload/v1779452047/21_05_26___Afya_News__Alerta_OPAS_para_Ebola_V%C3%ADrus_Andes_e_Cuidado_Feminino_bh7mjk.mp4" },
+  { type:"video", specialty:"Carreira", author:"Afya", time:"Há 2h", duration:38, durationUnit:"seg", title:"Carreira médica sustentável: O que avaliar a longo prazo? | Afya Responde", saves:0, likes:0, videoSrc:"https://res.cloudinary.com/dszbi9qer/video/upload/v1779707311/Carreira_m%C3%A9dica_sustent%C3%A1vel_O_que_avaliar_a_longo_prazo_Afya_Responde_opmpgi.mp4" },
   { type:"video", specialty:"Cardiologia", author:"Dr. Rafael Monteiro", time:"Há 1 h", duration:12, title:"Manejo da fibrilação atrial: do diagnóstico ao controle do ritmo em 2025", saves:61, likes:874, refs:"https://pubmed.ncbi.nlm.nih.gov" },
   { type:"video", specialty:"Endocrinologia", author:"Dra. Camila Souza", time:"Há 3 h", duration:9, title:"Obesidade e GLP-1: o que mudou na prática clínica com semaglutida e tirzepatida", saves:110, likes:1240, refs:"https://pubmed.ncbi.nlm.nih.gov" },
   { type:"video", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 5 h", duration:7, title:"Cefaleia em salvas: diagnóstico diferencial e abordagem terapêutica atualizada", saves:44, likes:503 },
@@ -74,7 +75,7 @@ const AuthorMeta = ({ item, onAuthorTap }) => (
     {item.duration && <>
       <span style={{color:"rgba(255,255,255,0.3)",fontSize:11}}>·</span>
       <span className="material-symbols-rounded" style={{fontSize:13,color:"rgba(255,255,255,0.45)",fontVariationSettings:"'FILL' 0,'wght' 300"}}>schedule</span>
-      <span style={{fontSize:11,color:"rgba(255,255,255,0.5)",fontWeight:600}}>{item.duration} min</span>
+      <span style={{fontSize:11,color:"rgba(255,255,255,0.5)",fontWeight:600}}>{item.duration} {item.durationUnit || "min"}</span>
     </>}
   </div>
 );
