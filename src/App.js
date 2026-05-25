@@ -56,10 +56,10 @@ const QUIZZES = [
   { type:"quiz", specialty:"Gastroenterologia", author:"Dra. Fernanda Lima", time:"Há 45 min", questions:[{q:"Qual é o principal fator de risco para adenocarcinoma de esôfago?",opts:["H. pylori","Esôfago de Barrett","Acalasia","Doença de Crohn"],correct:1},{q:"O tratamento de primeira linha para H. pylori é:",opts:["Amoxicilina isolada","Terapia tríplice com IBP","Metronidazol isolado","Ciprofloxacino"],correct:1},{q:"Qual achado endoscópico é patognomônico de doença celíaca?",opts:["Úlceras aftosas","Atrofia vilositária duodenal","Pseudopólipos","Mucosa em pavê"],correct:1}], likes:154, refs:"https://www.febrasgo.org.br" },
 ];
 const ARTICLES = [
-  { type:"article", specialty:"Cardiologia", author:"Dr. Rafael Monteiro", time:"Há 2 min", duration:6, title:"Inibidores de SGLT2: de fármacos metabólicos a pilares da cardiologia moderna", body:"Poucas classes de medicamentos transformaram a prática da cardiologia de forma tão rápida quanto os inibidores de SGLT2. Inicialmente desenvolvidos para o tratamento do diabetes tipo 2, esses fármacos ultrapassaram a fronteira metabólica e se consolidaram como protagonistas no manejo da insuficiência cardíaca com fração de ejeção reduzida e preservada, além de exibirem efeitos nefroprotetores significativos. Os grandes ensaios clínicos — EMPA-REG OUTCOME, CANVAS e DAPA-HF — demonstraram reduções consistentes em desfechos cardiovasculares maiores e hospitalização por insuficiência cardíaca.", saves:38, likes:432 },
-  { type:"article", specialty:"Endocrinologia", author:"Dra. Camila Souza", time:"Há 10 min", duration:5, title:"Hipotireoidismo subclínico: quando e como tratar em 2025", body:"A decisão de tratar o hipotireoidismo subclínico permanece controversa na literatura médica atual. Evidências recentes sugerem benefício em pacientes com TSH acima de 10 mUI/L, sintomas atribuíveis e fatores de risco cardiovascular estabelecidos. A levotiroxina em doses baixas melhora perfil lipídico e qualidade de vida em subgrupos selecionados, mas o rastreamento universal ainda não é recomendado pelas principais diretrizes internacionais, incluindo ATA e ETA.", saves:55, likes:671 },
-  { type:"article", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 20 min", duration:7, title:"Esclerose múltipla: novas terapias modificadoras de doença e perspectivas para 2025", body:"O cenário terapêutico da esclerose múltipla passou por uma revolução silenciosa na última década. As drogas modificadoras de alta eficácia, como natalizumabe, ocrelizumabe e cladribina, deslocaram o paradigma do tratamento escalonado para uma abordagem mais agressiva desde o diagnóstico. Dados recentes indicam que a introdução precoce de terapias de alta eficácia reduz significativamente a progressão da incapacidade e a carga lesional em RNM, especialmente em pacientes jovens com doença ativa.", saves:73, likes:892 },
-  { type:"article", specialty:"Gastroenterologia", author:"Dra. Fernanda Lima", time:"Há 35 min", duration:4, title:"Doença inflamatória intestinal: biomarcadores, biologics e o futuro do tratamento", body:"A doença de Crohn e a retocolite ulcerativa representam dois dos maiores desafios da gastroenterologia moderna. A introdução dos agentes biológicos — anti-TNF, anti-integrinas e inibidores de IL-12/23 — transformou os objetivos do tratamento, que agora miram a remissão endoscópica e a cicatrização mucosa. O monitoramento com calprotectina fecal e PCR ultrassensível permite ajuste terapêutico antes da recidiva clínica, reduzindo hospitalizações e cirurgias.", saves:49, likes:537 },
+  { type:"article", specialty:"Cardiologia", author:"Dr. Rafael Monteiro", time:"Há 2 min", duration:6, title:"Inibidores de SGLT2: de fármacos metabólicos a pilares da cardiologia moderna", body:"Poucas classes de medicamentos transformaram a prática da cardiologia de forma tão rápida quanto os inibidores de SGLT2. Inicialmente desenvolvidos para o tratamento do diabetes tipo 2, esses fármacos ultrapassaram a fronteira metabólica e se consolidaram como protagonistas no manejo da insuficiência cardíaca com fração de ejeção reduzida e preservada, além de exibirem efeitos nefroprotetores significativos. Os grandes ensaios clínicos — EMPA-REG OUTCOME, CANVAS e DAPA-HF — demonstraram reduções consistentes em desfechos cardiovasculares maiores e hospitalização por insuficiência cardíaca.\n\nNa insuficiência cardíaca, o benefício se mostrou independente da presença de diabetes, o que ampliou drasticamente o perfil de pacientes elegíveis. O ocrelizumabe e o sotagliflozina seguiram o mesmo caminho, reforçando que o efeito cardioprotetor é um efeito de classe. A diurese osmótica e a redução da pré e pós-carga parecem ser os mecanismos centrais nesse contexto, em combinação com efeitos anti-inflamatórios e melhora da função mitocondrial cardíaca.\n\nDo ponto de vista prático, a introdução dos SGLT2 nos protocolos de IC exige atenção especial à função renal e ao risco de infecções genitais. A taxa de filtração glomerular estimada (TFGe) abaixo de 20 mL/min/1,73m² ainda representa uma limitação para alguns agentes da classe. O futuro aponta para combinações precoces com sacubitril/valsartana e bloqueadores beta, consolidando o que já se denomina a quádrupla terapia da IC com FE reduzida.", saves:38, likes:432 },
+  { type:"article", specialty:"Endocrinologia", author:"Dra. Camila Souza", time:"Há 10 min", duration:5, title:"Hipotireoidismo subclínico: quando e como tratar em 2025", body:"A decisão de tratar o hipotireoidismo subclínico permanece controversa na literatura médica atual. Evidências recentes sugerem benefício em pacientes com TSH acima de 10 mUI/L, sintomas atribuíveis e fatores de risco cardiovascular estabelecidos. A levotiroxina em doses baixas melhora perfil lipídico e qualidade de vida em subgrupos selecionados, mas o rastreamento universal ainda não é recomendado pelas principais diretrizes internacionais, incluindo ATA e ETA.\n\nA avaliação clínica deve considerar a presença de anticorpos anti-TPO elevados, que aumentam o risco de progressão para hipotireoidismo franco em aproximadamente 4% ao ano. A ultrassonografia tireoidiana complementa a investigação ao identificar nódulos, tireoidite de Hashimoto e alterações volumétricas. Em mulheres em idade fértil ou gestantes, o limiar para tratamento é mais baixo, dada a associação com desfechos obstétricos adversos e desenvolvimento neurológico fetal.\n\nEm pacientes idosos acima de 70 anos, a evidência atual favorece conduta expectante, uma vez que TSH levemente elevado pode representar adaptação fisiológica protetora nessa faixa etária. O seguimento semestral com TSH e T4 livre é recomendado em todos os casos não tratados. A individualização da conduta, pautada no perfil clínico e nas preferências do paciente, permanece o pilar central da decisão terapêutica.", saves:55, likes:671 },
+  { type:"article", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 20 min", duration:7, title:"Esclerose múltipla: novas terapias modificadoras de doença e perspectivas para 2025", body:"O cenário terapêutico da esclerose múltipla passou por uma revolução silenciosa na última década. As drogas modificadoras de alta eficácia, como natalizumabe, ocrelizumabe e cladribina, deslocaram o paradigma do tratamento escalonado para uma abordagem mais agressiva desde o diagnóstico. Dados recentes indicam que a introdução precoce de terapias de alta eficácia reduz significativamente a progressão da incapacidade e a carga lesional em RNM, especialmente em pacientes jovens com doença ativa.\n\nO monitoramento por ressonância magnética tornou-se pilar fundamental no acompanhamento da EM, permitindo detecção precoce de atividade subclínica antes da ocorrência de surtos clínicos. O conceito de NEDA-4 (No Evidence of Disease Activity) incorpora parâmetros clínicos, radiológicos e de atrofia cerebral, orientando decisões de escalonamento terapêutico. A presença de anticorpos anti-JC e o índice de estratificação de risco para LMP condicionam a escolha e a duração do tratamento com natalizumabe.\n\nNovas moléculas em fase III, como os inibidores de BTK tolebrutinibe e fenebrutinibe, prometem atuar na progressão independente de surtos (PIRA), fenômeno que responde pela incapacidade acumulada mesmo em pacientes sem atividade inflamatória detectável. O avanço da neuroproteção e da remielinização como alvos terapêuticos complementares representa a próxima fronteira no manejo da doença.", saves:73, likes:892 },
+  { type:"article", specialty:"Gastroenterologia", author:"Dra. Fernanda Lima", time:"Há 35 min", duration:4, title:"Doença inflamatória intestinal: biomarcadores, biologics e o futuro do tratamento", body:"A doença de Crohn e a retocolite ulcerativa representam dois dos maiores desafios da gastroenterologia moderna. A introdução dos agentes biológicos — anti-TNF, anti-integrinas e inibidores de IL-12/23 — transformou os objetivos do tratamento, que agora miram a remissão endoscópica e a cicatrização mucosa. O monitoramento com calprotectina fecal e PCR ultrassensível permite ajuste terapêutico antes da recidiva clínica, reduzindo hospitalizações e cirurgias.\n\nA estratégia treat-to-target, incorporada às diretrizes do ECCO, exige reavaliações endoscópicas periódicas para confirmar a remissão histológica, hoje considerada o desfecho mais ambicioso e possivelmente mais protetor contra complicações a longo prazo. O monitoramento dos níveis séricos dos biológicos e a pesquisa de anticorpos anti-droga tornaram-se ferramentas essenciais para otimizar a terapia e evitar perda de resposta secundária, que acomete até 50% dos pacientes em uso de anti-TNF após 5 anos.\n\nO futuro do tratamento aponta para a medicina de precisão, com perfis genômicos e transcriptômicos da mucosa intestinal orientando a seleção do biológico mais adequado a cada fenótipo. Novos alvos moleculares, como os inibidores de JAK (tofacitinibe, upadacitinibe) e os anti-IL-23 de nova geração (risanquizumabe, mirikizumabe), ampliam o arsenal terapêutico disponível e oferecem opções seguras para pacientes refratários às classes anteriores.", saves:49, likes:537 },
 ];
 
 const CONTENT = [];
@@ -215,7 +215,9 @@ const ArticleSheet = ({ item, onClose }) => {
             </div>
           </div>
           <div style={{background:"white",borderRadius:18,padding:"22px 18px 24px",boxShadow:"0 1px 4px rgba(0,0,0,0.06)"}}>
-            <p style={{color:"rgba(0,0,0,0.72)",fontSize:15,lineHeight:1.85,margin:0}}>{item.body}</p>
+            {item.body.split("\n\n").map((p,i,arr)=>(
+              <p key={i} style={{color:"rgba(0,0,0,0.72)",fontSize:15,lineHeight:1.85,margin:i<arr.length-1?"0 0 18px":0}}>{p}</p>
+            ))}
             {refList.length > 0 && (
               <div style={{marginTop:24,paddingTop:20,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
                 <div style={{fontSize:13,fontWeight:800,color:"#111",marginBottom:12,display:"flex",alignItems:"center",gap:6}}>
@@ -237,20 +239,16 @@ const ArticleSheet = ({ item, onClose }) => {
   );
 };
 
-const ArticleCard = ({ item, onAuthorTap }) => {
-  const [showSheet, setShowSheet] = useState(false);
-  return (
-    <div style={{position:"relative",width:"100%",height:"100%",background:item.bg,display:"flex",flexDirection:"column",justifyContent:"center",padding:"100px 64px 100px 18px"}}>
-      <h2 style={{color:"white",fontSize:21,fontWeight:700,lineHeight:1.3,marginBottom:12,textShadow:"0 2px 16px rgba(0,0,0,0.5)"}}>{item.title}</h2>
-      <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
-      <p style={{color:"rgba(255,255,255,0.75)",fontSize:14,lineHeight:1.75,margin:"16px 0 0",display:"-webkit-box",WebkitLineClamp:10,WebkitBoxOrient:"vertical",overflow:"hidden",textShadow:"0 1px 6px rgba(0,0,0,0.4)"}}>{item.body}</p>
-      <button onClick={()=>setShowSheet(true)} style={{marginTop:18,alignSelf:"flex-start",background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,color:"white",fontSize:12,fontWeight:700,height:56,padding:"0 24px",cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
-        Ler artigo completo →
-      </button>
-      {showSheet && <ArticleSheet item={item} onClose={()=>setShowSheet(false)}/>}
-    </div>
-  );
-};
+const ArticleCard = ({ item, onAuthorTap, onArticleTap }) => (
+  <div style={{position:"relative",width:"100%",height:"100%",background:item.bg,display:"flex",flexDirection:"column",justifyContent:"center",padding:"100px 64px 100px 18px"}}>
+    <h2 style={{color:"white",fontSize:21,fontWeight:700,lineHeight:1.3,marginBottom:12,textShadow:"0 2px 16px rgba(0,0,0,0.5)"}}>{item.title}</h2>
+    <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
+    <p style={{color:"rgba(255,255,255,0.75)",fontSize:14,lineHeight:1.75,margin:"16px 0 0",display:"-webkit-box",WebkitLineClamp:10,WebkitBoxOrient:"vertical",overflow:"hidden",textShadow:"0 1px 6px rgba(0,0,0,0.4)"}}>{item.body.split("\n\n")[0]}</p>
+    <button onClick={()=>onArticleTap&&onArticleTap(item)} style={{marginTop:18,alignSelf:"flex-start",background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,color:"white",fontSize:12,fontWeight:700,height:56,padding:"0 24px",cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
+      Ler artigo completo →
+    </button>
+  </div>
+);
 
 const QuizCard = ({ item, onAuthorTap, onRefsTap }) => {
   const [step,setStep]=useState(0);
@@ -288,10 +286,10 @@ const QuizCard = ({ item, onAuthorTap, onRefsTap }) => {
   );
 };
 
-const CardContent = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
+const CardContent = ({ item, onAuthorTap, onRefsTap, onArticleTap, active, isMuted }) => {
   if(!item) return null;
   if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} active={active} isMuted={isMuted}/>;
-  if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap}/>;
+  if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap} onArticleTap={onArticleTap}/>;
   if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap}/>;
   return null;
 };
@@ -505,6 +503,7 @@ export default function MediFeed() {
   const [navTab, setNavTab] = useState("Descobrir");
   const [sheetAuthor, setSheetAuthor] = useState(null);
   const [sheetRefs, setSheetRefs] = useState(null);
+  const [sheetArticle, setSheetArticle] = useState(null);
   const [isMuted, setIsMuted] = useState(true);
   const scrollRef = useRef(null);
   const ticking = useRef(false);
@@ -553,6 +552,7 @@ export default function MediFeed() {
 
         <div ref={scrollRef} onScroll={handleScroll}
           onMouseDown={e => {
+            if (sheetArticle) return;
             const el = scrollRef.current;
             const startY = e.clientY;
             const startTop = el.scrollTop;
@@ -571,7 +571,7 @@ export default function MediFeed() {
             window.addEventListener("mousemove", onMove);
             window.addEventListener("mouseup", onUp);
           }}
-          style={{position:"absolute",inset:0,overflowY:"scroll",
+          style={{position:"absolute",inset:0,overflowY:sheetArticle?"hidden":"scroll",
             scrollSnapType:"y mandatory",
             WebkitOverflowScrolling:"touch",
             scrollbarWidth:"none",
@@ -583,7 +583,7 @@ export default function MediFeed() {
             <div key={i} style={{width:"100%",height:H,flexShrink:0,
               scrollSnapAlign:"start",scrollSnapStop:"always",
               position:"relative",overflow:"hidden"}}>
-              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} active={i===visibleIdx} isMuted={isMuted}/>
+              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
         </div>
@@ -602,6 +602,7 @@ export default function MediFeed() {
 
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
+        {sheetArticle && <ArticleSheet item={sheetArticle} onClose={()=>setSheetArticle(null)}/>}
       </div>
     </div>
   );
