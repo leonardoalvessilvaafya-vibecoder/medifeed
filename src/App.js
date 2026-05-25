@@ -80,18 +80,38 @@ const AuthorMeta = ({ item, onAuthorTap }) => (
   </div>
 );
 
-const VideoCard = ({ item, onAuthorTap, active }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+const VideoCard = ({ item, onAuthorTap, active, isMuted }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null);
   const fbTimer = useRef(null);
+  const videoRef = useRef(null);
 
-  useEffect(() => { if(active) setIsPlaying(true); }, [active]);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (active) {
+      v.currentTime = 0;
+      v.muted = isMuted;
+      v.play().catch(() => {});
+      setIsPlaying(true);
+    } else {
+      v.pause();
+      setIsPlaying(false);
+    }
+  }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) v.muted = isMuted;
+  }, [isMuted]);
+
   useEffect(() => () => clearTimeout(fbTimer.current), []);
 
   const handleTap = () => {
-    const videos = document.querySelectorAll("video");
+    const v = videoRef.current;
+    if (!v) return;
     const next = !isPlaying;
-    videos.forEach(v => next ? v.play() : v.pause());
+    next ? v.play().catch(() => {}) : v.pause();
     setIsPlaying(next);
     clearTimeout(fbTimer.current);
     setFeedback({ icon: next ? "play_arrow" : "pause", key: Date.now() });
@@ -104,8 +124,9 @@ const VideoCard = ({ item, onAuthorTap, active }) => {
       <div style={{position:"absolute",bottom:0,left:0,right:0,height:320,background:"linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.45) 55%,transparent 100%)",zIndex:1,pointerEvents:"none"}}/>
       {item.videoSrc ? (
         <video
+          ref={videoRef}
           src={item.videoSrc}
-          autoPlay muted loop playsInline
+          muted loop playsInline
           style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}
         />
       ) : item.youtubeId ? (
@@ -189,9 +210,9 @@ const QuizCard = ({ item, onAuthorTap }) => {
   );
 };
 
-const CardContent = ({ item, onAuthorTap, active }) => {
+const CardContent = ({ item, onAuthorTap, active, isMuted }) => {
   if(!item) return null;
-  if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} active={active}/>;
+  if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} active={active} isMuted={isMuted}/>;
   if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap}/>;
   if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap}/>;
   return null;
@@ -299,10 +320,8 @@ export default function MediFeed() {
   const ticking = useRef(false);
 
   const toggleMute = useCallback(() => {
-    const next = !isMuted;
-    document.querySelectorAll("video").forEach(v => { v.muted = next; });
-    setIsMuted(next);
-  }, [isMuted]);
+    setIsMuted(m => !m);
+  }, []);
 
   useEffect(()=>{
     const links=[
@@ -320,16 +339,6 @@ export default function MediFeed() {
     document.head.appendChild(s);
     return()=>{els.forEach(l=>document.head.removeChild(l));document.head.removeChild(s);};
   },[]);
-
-  useEffect(() => {
-    const current = CONTENT[visibleIdx];
-    const videos = document.querySelectorAll("video");
-    if (current?.type === "video" && current?.videoSrc) {
-      videos.forEach(v => { v.muted = isMuted; v.currentTime = 0; v.play(); });
-    } else {
-      videos.forEach(v => { v.pause(); });
-    }
-  }, [visibleIdx]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleScroll = useCallback(() => {
     if(ticking.current) return;
@@ -382,7 +391,7 @@ export default function MediFeed() {
             <div key={i} style={{width:"100%",height:H,flexShrink:0,
               scrollSnapAlign:"start",scrollSnapStop:"always",
               position:"relative",overflow:"hidden"}}>
-              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} active={i===visibleIdx}/>
+              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
         </div>
