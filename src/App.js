@@ -109,6 +109,7 @@ const VideoCard = ({ item, onAuthorTap, active }) => {
         />
       ) : item.youtubeId ? (
         <iframe
+          title="video"
           src={`https://www.youtube.com/embed/${item.youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${item.youtubeId}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`}
           style={{position:"absolute",top:"50%",left:"50%",width:"200%",height:"200%",transform:"translate(-50%,-50%)",border:"none",pointerEvents:"none"}}
           allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
