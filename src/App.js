@@ -325,7 +325,7 @@ const QuizCard = ({ item, onAuthorTap, onRefsTap, onCommentTap }) => {
     <div style={{position:"relative",width:"100%",height:"100%",background:item.bg,display:"flex",flexDirection:"column",justifyContent:"center",padding:"100px 18px 100px 18px"}}>
       <div style={{background:"rgba(255,255,255,0.06)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:18,padding:22,marginBottom:16}}>
         <div style={{fontSize:11,fontWeight:700,color:"rgba(255,255,255,0.4)",marginBottom:10,letterSpacing:0.5,textTransform:"uppercase"}}>Questão do dia</div>
-        <p style={{color:"white",fontSize:16,fontWeight:600,lineHeight:1.5,margin:0}}>{item.q}</p>
+        <p style={{color:"white",fontSize:12,fontWeight:600,lineHeight:1.5,margin:0}}>{item.q}</p>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
         {item.opts.map((opt,i)=>{
