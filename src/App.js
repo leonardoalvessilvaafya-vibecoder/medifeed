@@ -76,7 +76,25 @@ const N = Math.min(VIDEOS.length, QUIZZES.length, ARTICLES.length);
 for(let i=0;i<N;i++){ CONTENT.push(VIDEOS[i]); CONTENT.push(QUIZZES[i]); CONTENT.push(ARTICLES[i]); }
 CONTENT.forEach(c => { const col=getSpecialtyColor(c.specialty); c.bg=col.grad; c.accent=col.base; c.bgBase=col.base; });
 
-const H = 852;
+function useReelsDimensions() {
+  const [dims, setDims] = useState(() => {
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    const w = Math.round(vh * 9 / 16);
+    return { H: vh, W: Math.min(w, vw), fullWidth: w >= vw };
+  });
+  useEffect(() => {
+    const update = () => {
+      const vh = window.innerHeight;
+      const vw = window.innerWidth;
+      const w = Math.round(vh * 9 / 16);
+      setDims({ H: vh, W: Math.min(w, vw), fullWidth: w >= vw });
+    };
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return dims;
+}
 
 const AuthorMeta = ({ item, onAuthorTap }) => (
   <div style={{display:"flex",alignItems:"center",gap:8,marginTop:10}}>
@@ -517,9 +535,7 @@ const LoginScreen = ({ onUnlock }) => {
   };
 
   return (
-    <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
-      <div style={{width:393,height:852,borderRadius:44,overflow:"hidden",position:"relative",
-        boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)",
+    <div style={{position:"absolute",inset:0,
         background:"linear-gradient(160deg,#0a1628 0%,#0d2140 50%,#0a1628 100%)",
         display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 36px"}}>
         <style>{`
@@ -567,12 +583,12 @@ const LoginScreen = ({ onUnlock }) => {
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 };
 
 export default function MediFeed() {
+  const { H, W, fullWidth } = useReelsDimensions();
   const [unlocked, setUnlocked] = useState(false);
   const [visibleIdx, setVisibleIdx] = useState(0);
   const [navTab, setNavTab] = useState("Descobrir");
@@ -615,17 +631,17 @@ export default function MediFeed() {
       }
       ticking.current = false;
     });
-  }, []);
+  }, [H]);
 
   const item = CONTENT[visibleIdx] || CONTENT[0];
 
-  if (!unlocked) return <LoginScreen onUnlock={() => setUnlocked(true)} />; // fontes já carregadas pelo useEffect acima
-
   return (
-    <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
-      <div style={{width:393,height:H,borderRadius:44,overflow:"hidden",position:"relative",
-        boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)"}}>
-
+    <div style={{display:"flex",justifyContent:"center",alignItems:"center",
+      width:"100vw",height:"100vh",background:"transparent",overflow:"hidden"}}>
+      <div style={{width:W,height:H,borderRadius:fullWidth?0:44,overflow:"hidden",position:"relative",
+        boxShadow:fullWidth?"none":"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)"}}>
+        {!unlocked && <LoginScreen onUnlock={()=>setUnlocked(true)}/>}
+        {unlocked && <>
         <div ref={scrollRef} onScroll={handleScroll}
           onMouseDown={e => {
             if (sheetArticle || sheetComment) return;
@@ -680,6 +696,7 @@ export default function MediFeed() {
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
         {sheetArticle && <ArticleSheet item={sheetArticle} onClose={()=>setSheetArticle(null)}/>}
         {sheetComment && <QuizCommentSheet item={sheetComment} onClose={()=>setSheetComment(null)}/>}
+        </>}
       </div>
     </div>
   );
