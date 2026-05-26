@@ -253,11 +253,11 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
             </div>
           )}
           <div style={{position:"relative",width:"100%",height:isSeeking?5:3,
-            background:"rgba(255,255,255,0.28)",transition:"height .15s"}}>
+            background:"rgba(255,255,255,0.28)",transition:"height .15s",borderRadius:4}}>
             <div style={{position:"absolute",left:0,top:0,bottom:0,
               width:`${progress*100}%`,
               background:"linear-gradient(to right,#CD1C61,#3A439C)",
-              borderRadius:"0 2px 2px 0"}}/>
+              borderRadius:4}}/>
             <div style={{
               position:"absolute",
               left:`${progress*100}%`,
