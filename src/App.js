@@ -20,7 +20,7 @@ const getSpecialtyColor = s => {
 };
 
 const AUTHORS = {
-  "Afya": { bio:"Afya – que significa “saúde e bem-estar” no dialeto africano suaíli – nasceu da união da NRE Educacional, maior grupo de faculdades de Medicina do país (criado em 1999), com a MEDCEL, marca de cursos preparatórios para prova de residência médica. A primeira faculdade do grupo começou a operar em Tocantins, no Norte do país.\n\nCom sede em Nova Lima (MG), a Afya é uma companhia de capital aberto, com ações negociadas na bolsa de valores NASDAQ, nos Estados Unidos, desde 2019.\n\nMissão: Integrar educação e soluções para a prática médica, potencializando formação, atualização, assertividade, produtividade e conexão dos médicos com o ecossistema de saúde.\n\nPropósito: Transformar a saúde em conjunto com quem tem a Medicina como vocação." },
+  “Afya”: { image:”/afya-logo.png”, bio:”Afya – que significa “saúde e bem-estar” no dialeto africano suaíli – nasceu da união da NRE Educacional, maior grupo de faculdades de Medicina do país (criado em 1999), com a MEDCEL, marca de cursos preparatórios para prova de residência médica. A primeira faculdade do grupo começou a operar em Tocantins, no Norte do país.\n\nCom sede em Nova Lima (MG), a Afya é uma companhia de capital aberto, com ações negociadas na bolsa de valores NASDAQ, nos Estados Unidos, desde 2019.\n\nMissão: Integrar educação e soluções para a prática médica, potencializando formação, atualização, assertividade, produtividade e conexão dos médicos com o ecossistema de saúde.\n\nPropósito: Transformar a saúde em conjunto com quem tem a Medicina como vocação." },
   "Dra. Fernanda Lima": { bio:"Médica especialista em medicina do trabalho e saúde integrativa. Doutora pela USP, com mais de 15 anos de experiência em bem-estar de profissionais de saúde. Autora do livro 'Médicos também adoecem'." },
   "Dr. Rafael Monteiro": { bio:"Cardiologista intervencionista formado pelo InCor-HCFMUSP. Fellow do American College of Cardiology. Pesquisador nas áreas de insuficiência cardíaca e dispositivos implantáveis." },
   "Dra. Camila Souza": { bio:"Endocrinologista com fellowship em diabetes e doenças da tireoide pela UNIFESP. Membro da Sociedade Brasileira de Endocrinologia e Metabologia. Apaixonada por educação médica continuada." },
@@ -33,14 +33,22 @@ const avatarColors = ["#e94560","#f48fb1","#64b5f6","#81c784","#ce93d8","#ffb74d
 const getAvatarColor = n => avatarColors[n.charCodeAt(0) % avatarColors.length];
 const getInitials = n => n.split(" ").slice(0,2).map(w=>w[0]).join("");
 
-const Avatar = ({ name, size=28 }) => (
-  <div style={{width:size,height:size,borderRadius:"50%",background:getAvatarColor(name),
-    display:"flex",alignItems:"center",justifyContent:"center",
-    fontSize:size*0.38,fontWeight:700,color:"white",flexShrink:0,
-    border:"1.5px solid rgba(255,255,255,0.3)"}}>
-    {getInitials(name)}
-  </div>
-);
+const Avatar = ({ name, size=28 }) => {
+  const img = AUTHORS[name]?.image;
+  if (img) return (
+    <div style={{width:size,height:size,borderRadius:"50%",overflow:"hidden",flexShrink:0,border:"1.5px solid rgba(255,255,255,0.3)"}}>
+      <img src={img} alt={name} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+    </div>
+  );
+  return (
+    <div style={{width:size,height:size,borderRadius:"50%",background:getAvatarColor(name),
+      display:"flex",alignItems:"center",justifyContent:"center",
+      fontSize:size*0.38,fontWeight:700,color:"white",flexShrink:0,
+      border:"1.5px solid rgba(255,255,255,0.3)"}}>
+      {getInitials(name)}
+    </div>
+  );
+};
 
 const VIDEOS = [
   { type:"video", specialty:"Afya News", author:"Afya", time:"22/05/2026 às 08:00", duration:2, title:"22/05/26 | Afya News: Receitas Digitais, Dulaglutida na Visão e Inovação no SUS", saves:38, likes:432, videoSrc:"https://res.cloudinary.com/dszbi9qer/video/upload/v1779452047/21_05_26___Afya_News__Alerta_OPAS_para_Ebola_V%C3%ADrus_Andes_e_Cuidado_Feminino_bh7mjk.mp4" },
