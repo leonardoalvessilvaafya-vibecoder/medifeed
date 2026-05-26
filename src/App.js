@@ -52,10 +52,10 @@ const VIDEOS = [
   { type:"video", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 5 h", duration:7, title:"Cefaleia em salvas: diagnóstico diferencial e abordagem terapêutica atualizada", saves:44, likes:503 },
 ];
 const QUIZZES = [
-  { type:"quiz", specialty:"Medicina de Emergência", author:"Afya", time:"Há 5 min", questions:[{q:"Mulher de 62 anos, hipertensa, com dor torácica que piora à respiração profunda e troponina elevada após infecção viral recente. Qual o diagnóstico?",opts:["Embolia pulmonar","Dissecção de aorta","Infarto agudo do miocárdio","Miopericardite"],correct:3},{q:"Em pacientes hipertensos submetidos a cirurgia, qual medicamento deve ser suspenso pelo menos 24h antes?",opts:["Hidralazina","Losartana","Atenolol","Clonidina"],correct:3},{q:"Mulher de 67 anos com pré-síncopes recorrentes e bradicardia de 36 bpm. Qual achado é esperado no exame físico cervical?",opts:["Sinal da raiz quadrada","Dança das carótidas","Onda a em canhão","Sinal de Musset"],correct:2}], likes:198, refs:"https://portal.afya.com.br" },
-  { type:"quiz", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 15 min", questions:[{q:"Em qual janela terapêutica a trombólise com alteplase é mais eficaz no AVC isquêmico?",opts:["Até 1h","Até 3–4,5h","Até 8h","Até 12h"],correct:1},{q:"Qual achado no LCR é típico da meningite bacteriana?",opts:["Glicose normal","Proteína elevada","Células mononucleares","VDRL positivo"],correct:1},{q:"O sinal de Babinski indica lesão em qual via?",opts:["Via cerebelar","Via piramidal","Via extrapiramidal","Via espino-talâmica"],correct:1}], likes:389, refs:"https://www.sbne.org.br" },
-  { type:"quiz", specialty:"Endocrinologia", author:"Dra. Camila Souza", time:"Há 30 min", questions:[{q:"Qual exame confirma o diagnóstico de diabetes mellitus tipo 2?",opts:["Glicemia em jejum ≥126 mg/dL","HbA1c <5,7%","Insulinemia de jejum","Peptídeo C elevado"],correct:0},{q:"O principal mecanismo dos inibidores de SGLT2 é:",opts:["Aumento de insulina","Inibição da reabsorção renal de glicose","Redução do glucagon","Ativação de GLP-1"],correct:1},{q:"Qual é a meta de HbA1c recomendada para a maioria dos diabéticos adultos?",opts:["< 5,7%","< 6,5%","< 7,0%","< 8,0%"],correct:2}], likes:276, refs:"https://www.sbem.org.br" },
-  { type:"quiz", specialty:"Gastroenterologia", author:"Dra. Fernanda Lima", time:"Há 45 min", questions:[{q:"Qual é o principal fator de risco para adenocarcinoma de esôfago?",opts:["H. pylori","Esôfago de Barrett","Acalasia","Doença de Crohn"],correct:1},{q:"O tratamento de primeira linha para H. pylori é:",opts:["Amoxicilina isolada","Terapia tríplice com IBP","Metronidazol isolado","Ciprofloxacino"],correct:1},{q:"Qual achado endoscópico é patognomônico de doença celíaca?",opts:["Úlceras aftosas","Atrofia vilositária duodenal","Pseudopólipos","Mucosa em pavê"],correct:1}], likes:154, refs:"https://www.febrasgo.org.br" },
+  { type:"quiz", specialty:"Medicina de Emergência", author:"Afya", time:"Há 5 min", q:"Mulher de 62 anos, hipertensa, com dor torácica que piora à respiração profunda e troponina elevada após infecção viral recente. Qual o diagnóstico?", opts:["Embolia pulmonar","Dissecção de aorta","Infarto agudo do miocárdio","Miopericardite"], correct:3, comment:"O ultrassom do coração mostra um derrame pericárdico pequeno, o que juntamente com o quadro clínico, as alterações laboratoriais e a história de infecção viral recente reforçam o diagnóstico de miopericardite aguda.\n\nA pericardite é uma inflamação do pericárdio, que é uma fina membrana que reveste o coração.\n\nO quadro clínico característico é de dor torácica ventilatório dependente, que melhora com a flexão do tronco para frente (prece maometana). Pode haver febre associada.\n\nA presença de troponina positiva também pode ocorrer e representa a lesão de miócitos, definindo um quadro de miopericardite.\n\nO exame físico pode demonstrar a presença de atrito pericárdico. Há várias etiologias de pericardite (autoimune, neoplásica, bacteriana…) e as mais comuns são virais e idiopáticas.\n\nAs alterações mais comuns do eletrocardiograma são: supradesnivelamento difuso do segmento ST, taquicardia sinusal e infradesnivelamento difuso do segmento PR.\n\nO ecocardiograma normalmente evidencia a presença de derrame pericárdico.", commentRef:"Acute pericarditis: Clinical presentation and diagnosis. Massimo Imazio, et al. UPTODATE, november 2023.", likes:198, refs:"https://portal.afya.com.br" },
+  { type:"quiz", specialty:"Neurologia", author:"Dr. Bruno Alves", time:"Há 15 min", q:"Em qual janela terapêutica a trombólise com alteplase é mais eficaz no AVC isquêmico?", opts:["Até 1h","Até 3–4,5h","Até 8h","Até 12h"], correct:1, comment:"A janela terapêutica de 3 a 4,5 horas é a recomendada pelas principais diretrizes para uso do alteplase no AVC isquêmico agudo. Dentro desse período, o benefício supera o risco de transformação hemorrágica.\n\nPacientes tratados na janela de 0–3h apresentam os maiores benefícios, com NNT de aproximadamente 8. Entre 3–4,5h, o benefício é menor mas ainda clinicamente significativo, com algumas restrições de elegibilidade (ex.: uso de anticoagulantes orais, AVC grave).\n\nApós 4,5 horas, a trombectomia mecânica pode ser considerada em casos selecionados com imagem favorável (mismatch clínico-radiológico), estendendo a janela até 24 horas em centros especializados.", commentRef:"Powers WJ et al. 2019 AHA/ASA Guidelines for the Early Management of Acute Ischemic Stroke. Stroke. 2019.", likes:389, refs:"https://www.sbne.org.br" },
+  { type:"quiz", specialty:"Endocrinologia", author:"Dra. Camila Souza", time:"Há 30 min", q:"Qual exame confirma o diagnóstico de diabetes mellitus tipo 2?", opts:["Glicemia em jejum ≥126 mg/dL","HbA1c <5,7%","Insulinemia de jejum","Peptídeo C elevado"], correct:0, comment:"O diagnóstico de diabetes mellitus tipo 2 é confirmado por glicemia de jejum ≥126 mg/dL em duas ocasiões distintas, ou por um único resultado associado a sintomas clássicos como poliúria, polidipsia e perda de peso.\n\nOutros critérios diagnósticos aceitos incluem: glicemia 2h após sobrecarga de 75g de glicose ≥200 mg/dL, HbA1c ≥6,5% (não <5,7% que indica normoglicemia), ou glicemia casual ≥200 mg/dL com sintomas.\n\nA insulinemia de jejum e o peptídeo C são úteis para diferenciar DM tipo 1 do tipo 2 e avaliar a reserva pancreática, mas não são critérios diagnósticos para DM2. O rastreamento é recomendado em adultos a partir dos 35 anos ou mais cedo na presença de fatores de risco.", commentRef:"American Diabetes Association. Standards of Medical Care in Diabetes 2024. Diabetes Care.", likes:276, refs:"https://www.sbem.org.br" },
+  { type:"quiz", specialty:"Gastroenterologia", author:"Dra. Fernanda Lima", time:"Há 45 min", q:"Qual é o principal fator de risco para adenocarcinoma de esôfago?", opts:["H. pylori","Esôfago de Barrett","Acalasia","Doença de Crohn"], correct:1, comment:"O esôfago de Barrett é a principal lesão precursora do adenocarcinoma de esôfago, resultante da metaplasia intestinal do epitélio esofágico em resposta à exposição crônica ao ácido gástrico e bile.\n\nA progressão de Barrett sem displasia para adenocarcinoma ocorre em cerca de 0,1 a 0,3% ao ano. A presença de displasia de alto grau eleva esse risco substancialmente, justificando vigilância endoscópica intensiva e tratamento endoscópico ou cirúrgico precoce.\n\nO H. pylori está associado ao adenocarcinoma gástrico, não esofágico. A acalasia eleva o risco de carcinoma espinocelular de esôfago, não adenocarcinoma. O controle do refluxo gastroesofágico é a principal estratégia de prevenção primária do Barrett e sua progressão maligna.", commentRef:"Shaheen NJ et al. ACG Clinical Guideline: Diagnosis and Management of Barrett's Esophagus. Am J Gastroenterol. 2022.", likes:154, refs:"https://www.febrasgo.org.br" },
 ];
 const ARTICLES = [
   { type:"article", specialty:"Cardiologia", author:"Ariane Vieira Scarlatelli Macedo", time:"25/05/2026", duration:14, title:"Cardio-oncologia na prática: uma nova fronteira no cuidado do paciente com câncer", body:"Quando falamos do cuidado cardiovascular em nossos consultórios, nossa mente se volta imediatamente para condições como hipertensão, dislipidemia, doença coronária e insuficiência cardíaca. No entanto, um grupo de pacientes está crescendo em prevalência e complexidade, exigindo um olhar mais integrado: aqueles que estão em tratamento oncológico ou que o concluíram. Graças ao avanço das terapias oncológicas, esses pacientes estão vivendo mais, mas essa sobrevida aumentada expõe uma nova realidade: um risco cardiovascular significativamente maior.\n\nA abordagem tradicional de esperar que a cardiotoxicidade se manifeste para então tratá-la já não é suficiente. É fundamental abandonar essa visão reativa em favor de uma estratégia proativa, que reconhece o risco cardiovascular como um componente intrínseco da jornada oncológica desde o seu diagnóstico. Esse risco não surge apenas como consequência do tratamento, mas é influenciado por uma complexa interação de fatores — a própria biologia tumoral, o estado inflamatório sistêmico e as terapias oncológicas, que embora essenciais para a cura, podem atuar como gatilhos diretos para complicações cardiovasculares.\n\nCompreender as vias biológicas compartilhadas entre o câncer e a doença cardiovascular é o que fundamenta a prática clínica em cardio-oncologia. As duas condições frequentemente se encontram porque compartilham mecanismos fisiopatológicos comuns: inflamação crônica que acelera processos ateroscleróticos, disfunção endotelial que favorece a trombose, alterações metabólicas como resistência à insulina e dislipidemia, e estresse oxidativo que causa dano direto ao miocárdio e aos vasos.\n\nA avaliação realizada antes do início do tratamento oncológico é, talvez, o passo mais determinante para o sucesso da jornada do paciente. Uma avaliação basal estruturada ideal inclui anamnese e exame físico com foco em fatores de risco, eletrocardiograma, biomarcadores como troponinas e peptídeos natriuréticos, e ecocardiograma com strain longitudinal global. O strain, em particular, permite identificar vulnerabilidades subclínicas que passam despercebidas na avaliação convencional — uma queda maior que 15% em relação ao basal é sinal de alerta para cardiotoxicidade incipiente.\n\nO risco cardiovascular não desaparece ao final da última sessão de quimioterapia ou radioterapia. Para muitos sobreviventes de câncer, o risco permanece elevado por toda a vida. A cardio-oncologia não é mais uma subespecialidade de nicho — ela já faz parte do cotidiano de todos os cardiologistas. Ao final, nossa missão é permitir que o paciente não apenas sobreviva ao câncer, mas que tenha uma vida plena depois dele, com o coração preservado e confiança para seguir em frente.", saves:73, likes:892, refs:"https://portal.afya.com.br/cardiologia/cardio-oncologia-na-pratica-uma-nova-fronteira-no-cuidado-do-paciente-com-cancer" },
@@ -252,32 +252,100 @@ const ArticleCard = ({ item, onAuthorTap, onArticleTap }) => (
   </div>
 );
 
-const QuizCard = ({ item, onAuthorTap, onRefsTap }) => {
-  const [step,setStep]=useState(0);
-  const [answers,setAnswers]=useState([]);
-  const done=step>=item.questions.length;
-  const score=answers.filter((a,i)=>a===item.questions[i].correct).length;
-  const q=item.questions[step];
-  const pick=i=>{ const n=[...answers,i]; setAnswers(n); setTimeout(()=>{ if(step<item.questions.length-1) setStep(s=>s+1); else setStep(item.questions.length); },900); };
+const QuizCommentSheet = ({ item, onClose }) => {
+  const [visible, setVisible] = useState(false);
+  const [dragY, setDragY] = useState(0);
+  const dragStart = useRef(null);
+  useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
+  const close = () => { setVisible(false); setDragY(0); setTimeout(onClose, 300); };
+  const onDS = e => { dragStart.current = e.type==="touchstart"?e.touches[0].clientY:e.clientY; };
+  const onDM = e => { if(dragStart.current===null)return; const y=(e.type==="touchmove"?e.touches[0].clientY:e.clientY)-dragStart.current; if(y>0)setDragY(y); };
+  const onDE = () => { if(dragY>80)close(); else setDragY(0); dragStart.current=null; };
+  return (
+    <div onClick={close} style={{position:"absolute",inset:0,zIndex:50,background:visible?"rgba(0,0,0,0.5)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(4px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",maxHeight:"88%",borderRadius:"24px 24px 0 0",background:"#ffffff",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",display:"flex",flexDirection:"column",overflow:"hidden"}}>
+        <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE}
+          style={{flexShrink:0,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 16px 10px",cursor:"grab"}}>
+          <div style={{width:32}}/>
+          <div style={{width:36,height:4,borderRadius:2,background:"rgba(0,0,0,0.13)"}}/>
+          <button onClick={close} style={{width:32,height:32,borderRadius:"50%",background:"rgba(0,0,0,0.07)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+            <span className="material-symbols-rounded" style={{fontSize:18,color:"#444"}}>close</span>
+          </button>
+        </div>
+        <div style={{flex:1,overflowY:"auto",padding:"4px 22px 36px",WebkitOverflowScrolling:"touch"}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:16,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
+            <div style={{width:38,height:38,borderRadius:12,background:"linear-gradient(135deg,#1a3a6b,#2261B1)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+              <span className="material-symbols-rounded" style={{fontSize:20,color:"white",fontVariationSettings:"'FILL' 0,'wght' 300"}}>clinical_notes</span>
+            </div>
+            <div>
+              <div style={{fontSize:15,fontWeight:800,color:"#111",lineHeight:1.2}}>Comentário do médico</div>
+              <div style={{fontSize:12,color:"rgba(0,0,0,0.4)",marginTop:2}}>{item.author}</div>
+            </div>
+          </div>
+          <div style={{background:"rgba(34,97,177,0.06)",borderRadius:14,padding:"14px 16px",marginBottom:18,borderLeft:"3px solid #2261B1"}}>
+            <div style={{fontSize:12,fontWeight:700,color:"#2261B1",marginBottom:4}}>Resposta correta</div>
+            <div style={{fontSize:14,fontWeight:700,color:"#111"}}>{item.opts[item.correct]}</div>
+          </div>
+          {item.comment.split("\n\n").map((p,i)=>(
+            <p key={i} style={{color:"rgba(0,0,0,0.7)",fontSize:14,lineHeight:1.8,margin:i===0?"0 0 14px":"14px 0"}}>{p}</p>
+          ))}
+          {item.commentRef && (
+            <div style={{marginTop:20,paddingTop:16,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
+              <div style={{fontSize:12,fontWeight:700,color:"#111",marginBottom:8,display:"flex",alignItems:"center",gap:5}}>
+                <span className="material-symbols-rounded" style={{fontSize:14}}>menu_book</span>
+                Referência bibliográfica
+              </div>
+              <p style={{fontSize:12,color:"rgba(0,0,0,0.5)",lineHeight:1.6,margin:0,fontStyle:"italic"}}>{item.commentRef}</p>
+            </div>
+          )}
+          <button onClick={close} style={{marginTop:24,width:"100%",height:52,borderRadius:26,background:"#111",border:"none",color:"white",fontSize:14,fontWeight:700,cursor:"pointer"}}>Fechar</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const QuizCard = ({ item, onAuthorTap, onRefsTap, onCommentTap }) => {
+  const [picked, setPicked] = useState(null);
+  const isCorrect = picked === item.correct;
+  const handlePick = (i) => {
+    if (picked !== null) return;
+    setPicked(i);
+    if (item.comment) setTimeout(() => onCommentTap && onCommentTap(item), 1200);
+  };
   return (
     <div style={{position:"relative",width:"100%",height:"100%",background:item.bg,display:"flex",flexDirection:"column",justifyContent:"center",padding:"100px 18px 100px 18px"}}>
-      {!done && <div style={{position:"absolute",top:82,right:18,zIndex:2,fontSize:11,color:"rgba(255,255,255,0.35)",fontWeight:600}}>{step+1} / {item.questions.length}</div>}
-      <div style={{display:"flex",gap:6,marginBottom:16}}>
-        {item.questions.map((_,i)=>{ const answered=i<answers.length,correct=answered&&answers[i]===item.questions[i].correct; return <div key={i} style={{flex:1,height:4,borderRadius:4,transition:"background .4s",background:answered?(correct?"#81c784":"#e57373"):i===step?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.15)"}}/>; })}
+      <div style={{background:"rgba(255,255,255,0.06)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:18,padding:22,marginBottom:16}}>
+        <div style={{fontSize:11,fontWeight:700,color:"rgba(255,255,255,0.4)",marginBottom:10,letterSpacing:0.5,textTransform:"uppercase"}}>Questão do dia</div>
+        <p style={{color:"white",fontSize:16,fontWeight:600,lineHeight:1.5,margin:0}}>{item.q}</p>
       </div>
-      {!done ? (<>
-        <div style={{background:"rgba(255,255,255,0.06)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:18,padding:20,marginBottom:16}}>
-          <p style={{color:"white",fontSize:16,fontWeight:600,lineHeight:1.45,margin:0}}>{q.q}</p>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-          {q.opts.map((opt,i)=>{ const picked=answers[step]!==undefined,isCorrect=i===q.correct,isSelected=answers[step]===i; let bg="rgba(255,255,255,0.07)",border="rgba(255,255,255,0.13)",color="rgba(255,255,255,0.85)"; if(picked&&isCorrect){bg="rgba(100,200,100,0.2)";border="#81c784";color="#a5d6a7";} else if(picked&&isSelected){bg="rgba(200,80,80,0.2)";border="#e57373";color="#ef9a9a";} return <button key={i} onClick={()=>{ if(!picked) pick(i); }} style={{background:bg,backdropFilter:"blur(12px)",border:`1px solid ${border}`,borderRadius:14,padding:"16px 12px",fontSize:14,color,fontWeight:600,cursor:picked?"default":"pointer",transition:"all .25s",textAlign:"center",lineHeight:1.3}}>{opt}</button>; })}
-        </div>
-      </>) : (
-        <div style={{textAlign:"center",padding:"24px 0"}}>
-          <div style={{fontSize:48,marginBottom:12}}>{score===item.questions.length?"🏆":score>=2?"🎯":"📚"}</div>
-          <div style={{color:"white",fontSize:22,fontWeight:800,marginBottom:6}}>{score}/{item.questions.length} corretas</div>
-          <div style={{color:"rgba(255,255,255,0.6)",fontSize:14,lineHeight:1.6}}>{score===item.questions.length?"Raciocínio clínico impecável!":score>=2?"Bom desempenho! Continue estudando.":"Revise o conteúdo e tente novamente."}</div>
-          <button onClick={()=>{setStep(0);setAnswers([]);}} style={{marginTop:24,background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,color:"white",fontSize:12,fontWeight:700,height:48,padding:"0 20px",cursor:"pointer"}}>Tentar novamente</button>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+        {item.opts.map((opt,i)=>{
+          const isPicked=picked===i, isRight=i===item.correct;
+          let bg="rgba(255,255,255,0.07)",border="rgba(255,255,255,0.13)",color="rgba(255,255,255,0.85)";
+          if(picked!==null){
+            if(isRight){bg="rgba(100,200,100,0.2)";border="#81c784";color="#a5d6a7";}
+            else if(isPicked){bg="rgba(200,80,80,0.2)";border="#e57373";color="#ef9a9a";}
+            else{bg="rgba(255,255,255,0.03)";border="rgba(255,255,255,0.07)";color="rgba(255,255,255,0.35)";}
+          }
+          return (
+            <button key={i} onClick={()=>handlePick(i)} style={{background:bg,backdropFilter:"blur(12px)",border:`1px solid ${border}`,borderRadius:14,padding:"16px 12px",fontSize:14,color,fontWeight:600,cursor:picked!==null?"default":"pointer",transition:"all .3s",textAlign:"center",lineHeight:1.3}}>{opt}</button>
+          );
+        })}
+      </div>
+      {picked !== null && (
+        <div style={{marginTop:16,display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+          <div style={{display:"flex",alignItems:"center",gap:8}}>
+            <span className="material-symbols-rounded" style={{fontSize:20,color:isCorrect?"#81c784":"#e57373",fontVariationSettings:"'FILL' 1,'wght' 400"}}>{isCorrect?"check_circle":"cancel"}</span>
+            <span style={{fontSize:13,fontWeight:700,color:isCorrect?"#a5d6a7":"#ef9a9a"}}>{isCorrect?"Correto!":"Incorreto"}</span>
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            {item.comment && <button onClick={()=>onCommentTap&&onCommentTap(item)} style={{background:"rgba(255,255,255,0.12)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:20,color:"white",fontSize:12,fontWeight:700,height:36,padding:"0 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
+              <span className="material-symbols-rounded" style={{fontSize:15,fontVariationSettings:"'FILL' 0,'wght' 300"}}>clinical_notes</span>
+              Ver comentário
+            </button>}
+            <button onClick={()=>setPicked(null)} style={{background:"rgba(255,255,255,0.07)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.13)",borderRadius:20,color:"rgba(255,255,255,0.6)",fontSize:12,fontWeight:700,height:36,padding:"0 14px",cursor:"pointer"}}>Refazer</button>
+          </div>
         </div>
       )}
       <div style={{position:"absolute",bottom:96,left:18,right:64,zIndex:2}}>
@@ -288,11 +356,11 @@ const QuizCard = ({ item, onAuthorTap, onRefsTap }) => {
   );
 };
 
-const CardContent = ({ item, onAuthorTap, onRefsTap, onArticleTap, active, isMuted }) => {
+const CardContent = ({ item, onAuthorTap, onRefsTap, onArticleTap, onCommentTap, active, isMuted }) => {
   if(!item) return null;
   if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} active={active} isMuted={isMuted}/>;
   if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap} onArticleTap={onArticleTap}/>;
-  if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap}/>;
+  if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} onCommentTap={onCommentTap}/>;
   return null;
 };
 
@@ -506,6 +574,7 @@ export default function MediFeed() {
   const [sheetAuthor, setSheetAuthor] = useState(null);
   const [sheetRefs, setSheetRefs] = useState(null);
   const [sheetArticle, setSheetArticle] = useState(null);
+  const [sheetComment, setSheetComment] = useState(null);
   const [isMuted, setIsMuted] = useState(true);
   const scrollRef = useRef(null);
   const ticking = useRef(false);
@@ -554,7 +623,7 @@ export default function MediFeed() {
 
         <div ref={scrollRef} onScroll={handleScroll}
           onMouseDown={e => {
-            if (sheetArticle) return;
+            if (sheetArticle || sheetComment) return;
             const el = scrollRef.current;
             const startY = e.clientY;
             const startTop = el.scrollTop;
@@ -573,7 +642,7 @@ export default function MediFeed() {
             window.addEventListener("mousemove", onMove);
             window.addEventListener("mouseup", onUp);
           }}
-          style={{position:"absolute",inset:0,overflowY:sheetArticle?"hidden":"scroll",
+          style={{position:"absolute",inset:0,overflowY:(sheetArticle||sheetComment)?"hidden":"scroll",
             scrollSnapType:"y mandatory",
             WebkitOverflowScrolling:"touch",
             scrollbarWidth:"none",
@@ -585,7 +654,7 @@ export default function MediFeed() {
             <div key={i} style={{width:"100%",height:H,flexShrink:0,
               scrollSnapAlign:"start",scrollSnapStop:"always",
               position:"relative",overflow:"hidden"}}>
-              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} active={i===visibleIdx} isMuted={isMuted}/>
+              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} onCommentTap={item=>setSheetComment(item)} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
         </div>
@@ -605,6 +674,7 @@ export default function MediFeed() {
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
         {sheetArticle && <ArticleSheet item={sheetArticle} onClose={()=>setSheetArticle(null)}/>}
+        {sheetComment && <QuizCommentSheet item={sheetComment} onClose={()=>setSheetComment(null)}/>}
       </div>
     </div>
   );
