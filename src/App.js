@@ -337,7 +337,7 @@ const QuizCard = ({ item, onAuthorTap, onRefsTap, onCommentTap }) => {
             else{bg="rgba(255,255,255,0.03)";border="rgba(255,255,255,0.07)";color="rgba(255,255,255,0.35)";}
           }
           return (
-            <button key={i} onClick={()=>handlePick(i)} style={{background:bg,backdropFilter:"blur(12px)",border:`1px solid ${border}`,borderRadius:14,padding:"16px 12px",fontSize:14,color,fontWeight:600,cursor:picked!==null?"default":"pointer",transition:"all .3s",textAlign:"center",lineHeight:1.3}}>{opt}</button>
+            <button key={i} onClick={()=>handlePick(i)} style={{background:bg,backdropFilter:"blur(12px)",border:`1px solid ${border}`,borderRadius:14,padding:"16px 12px",fontSize:12,color,fontWeight:600,cursor:picked!==null?"default":"pointer",transition:"all .3s",textAlign:"center",lineHeight:1.3}}>{opt}</button>
           );
         })}
       </div>
