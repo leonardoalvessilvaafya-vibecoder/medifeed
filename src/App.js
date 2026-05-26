@@ -277,7 +277,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   );
 };
 
-const ArticleSheet = ({ item, onClose }) => {
+const ArticleSheet = ({ item, onClose, onShare }) => {
   const [visible, setVisible] = useState(false);
   const [dragY, setDragY] = useState(0);
   const [saved, setSaved] = useState(false);
@@ -316,7 +316,7 @@ const ArticleSheet = ({ item, onClose }) => {
                 {[
                   {icon:saved?"bookmark":"bookmark",fill:saved,onClick:()=>setSaved(s=>!s),color:saved?"#2261B1":"#555"},
                   {icon:liked?"favorite":"favorite",fill:liked,onClick:()=>setLiked(l=>!l),color:liked?"#e94560":"#555"},
-                  {icon:"share",fill:false,onClick:()=>{},color:"#555"},
+                  {icon:"share",fill:false,onClick:onShare,color:"#555"},
                 ].map((btn,i)=>(
                   <button key={i} onClick={btn.onClick} style={{width:36,height:36,borderRadius:"50%",border:"1px solid rgba(0,0,0,0.1)",background:"white",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                     <span className="material-symbols-rounded" style={{fontSize:18,color:btn.color,fontVariationSettings:btn.fill?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>{btn.icon}</span>
@@ -477,13 +477,13 @@ const InvisibleBtn = ({ icon, count, active, onClick }) => (
   </button>
 );
 
-const SideActions = ({ item, isMuted, onToggleMute }) => {
+const SideActions = ({ item, isMuted, onToggleMute, onShareTap }) => {
   const [liked,setLiked]=useState(false);
   const [saved,setSaved]=useState(false);
   const isQuiz=item.type==="quiz";
   const isVideo=item.type==="video";
   return (
-    <div style={{position:"absolute",right:14,bottom:108,zIndex:20,display:"flex",flexDirection:"column",gap:22,alignItems:"center"}}>
+    <div style={{position:"absolute",right:14,bottom:108,zIndex:30,display:"flex",flexDirection:"column",gap:22,alignItems:"center"}}>
       {isVideo && (
         <button onClick={onToggleMute} style={{background:"rgba(255,255,255,0.08)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.15)",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
           <span className="material-symbols-rounded" style={{fontSize:22,fontVariationSettings:"'FILL' 0,'wght' 300"}}>{isMuted?"volume_off":"volume_up"}</span>
@@ -491,7 +491,14 @@ const SideActions = ({ item, isMuted, onToggleMute }) => {
       )}
       {!isQuiz && <InvisibleBtn icon="bookmark" count={item.saves+(saved?1:0)} active={saved} onClick={()=>setSaved(s=>!s)}/>}
       <InvisibleBtn icon="favorite" count={item.likes+(liked?1:0)} active={liked} onClick={()=>setLiked(l=>!l)}/>
-      {!isQuiz && <InvisibleBtn icon="share" onClick={()=>{}}/>}
+      {!isQuiz && (
+        <button
+          onPointerDown={e => e.stopPropagation()}
+          onClick={e => { e.stopPropagation(); onShareTap && onShareTap(); }}
+          style={{display:"flex",flexDirection:"column",alignItems:"center",gap:2,background:"none",border:"none",padding:"8px",cursor:"pointer",color:"rgba(255,255,255,0.75)"}}>
+          <span className="material-symbols-rounded" style={{fontSize:26,fontVariationSettings:"'FILL' 0,'wght' 300",filter:"drop-shadow(0 1px 4px rgba(0,0,0,0.6))"}}>share</span>
+        </button>
+      )}
     </div>
   );
 };
@@ -599,6 +606,53 @@ const RefsSheet = ({ refs, onClose }) => {
   );
 };
 
+const ShareSheet = ({ onClose }) => {
+  const [visible, setVisible] = useState(false);
+  const [dragY, setDragY] = useState(0);
+  const dragStart = useRef(null);
+  useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
+  const close = () => { setVisible(false); setDragY(0); setTimeout(onClose, 300); };
+  const onDS = e => { dragStart.current = e.type === "touchstart" ? e.touches[0].clientY : e.clientY; };
+  const onDM = e => { if (dragStart.current === null) return; const y = (e.type === "touchmove" ? e.touches[0].clientY : e.clientY) - dragStart.current; if (y > 0) setDragY(y); };
+  const onDE = () => { if (dragY > 80) close(); else setDragY(0); dragStart.current = null; };
+  const circleStyle = { width:52,height:52,borderRadius:"50%",border:"1.5px solid rgba(0,0,0,0.1)",background:"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0 };
+  const btnStyle = { display:"flex",flexDirection:"column",alignItems:"center",gap:7,background:"none",border:"none",cursor:"pointer",padding:0 };
+  const labelStyle = { fontSize:11,color:"rgba(0,0,0,0.5)",fontWeight:600,textAlign:"center",lineHeight:1.2 };
+  const matIcon = (name) => <span className="material-symbols-rounded" style={{fontSize:22,color:"#222",fontVariationSettings:"'FILL' 0,'wght' 300"}}>{name}</span>;
+  const row1 = [
+    { label:"X",          el:<svg viewBox="0 0 24 24" width="19" height="19" fill="#111"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.265 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> },
+    { label:"WhatsApp",   el:<svg viewBox="0 0 24 24" width="22" height="22" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> },
+    { label:"Facebook",   el:<svg viewBox="0 0 24 24" width="22" height="22" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+    { label:"LinkedIn",   el:<svg viewBox="0 0 24 24" width="20" height="20" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+    { label:"Copiar link",el:matIcon("link") },
+    { label:"E-mail",     el:matIcon("mail") },
+  ];
+  return (
+    <div onClick={close} style={{position:"absolute",inset:0,zIndex:50,background:visible?"rgba(0,0,0,0.45)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(6px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",borderRadius:"24px 24px 0 0",background:"#f5f5f5",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",padding:"0 22px 40px"}}>
+        <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE}
+          style={{display:"flex",justifyContent:"center",padding:"12px 0 10px",cursor:"grab"}}>
+          <div style={{width:36,height:4,borderRadius:2,background:"rgba(0,0,0,0.14)"}}/>
+        </div>
+        <div style={{fontSize:17,fontWeight:800,color:"#111",marginBottom:4}}>Compartilhar conteúdo</div>
+        <div style={{fontSize:13,color:"rgba(0,0,0,0.42)",marginBottom:22}}>Por onde você quer compartilhar?</div>
+        <div style={{display:"flex",justifyContent:"space-between",marginBottom:20}}>
+          {row1.map((opt,i)=>(
+            <button key={i} onClick={e=>e.stopPropagation()} style={btnStyle}>
+              <div style={circleStyle}>{opt.el}</div>
+              <span style={labelStyle}>{opt.label}</span>
+            </button>
+          ))}
+        </div>
+        <button onClick={e=>e.stopPropagation()} style={btnStyle}>
+          <div style={circleStyle}>{matIcon("more_horiz")}</div>
+          <span style={labelStyle}>Mais</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const PASS = "TesteDescobrir2026Jun";
 
 const LoginScreen = ({ onUnlock }) => {
@@ -681,6 +735,7 @@ export default function MediFeed() {
   const [sheetRefs, setSheetRefs] = useState(null);
   const [sheetArticle, setSheetArticle] = useState(null);
   const [sheetComment, setSheetComment] = useState(null);
+  const [sheetShare, setSheetShare] = useState(null);
   const [isMuted, setIsMuted] = useState(true);
   const scrollRef = useRef(null);
   const ticking = useRef(false);
@@ -729,7 +784,7 @@ export default function MediFeed() {
 
         <div ref={scrollRef} onScroll={handleScroll}
           onMouseDown={e => {
-            if (sheetArticle || sheetComment) return;
+            if (sheetArticle || sheetComment || sheetShare) return;
             const el = scrollRef.current;
             const startY = e.clientY;
             const startTop = el.scrollTop;
@@ -748,12 +803,12 @@ export default function MediFeed() {
             window.addEventListener("mousemove", onMove);
             window.addEventListener("mouseup", onUp);
           }}
-          style={{position:"absolute",inset:0,overflowY:(sheetArticle||sheetComment)?"hidden":"scroll",
+          style={{position:"absolute",inset:0,overflowY:(sheetArticle||sheetComment||sheetShare)?"hidden":"scroll",
             scrollSnapType:"y mandatory",
-            WebkitOverflowScrolling:"touch",
             scrollbarWidth:"none",
             msOverflowStyle:"none",
             cursor:"grab",
+            zIndex:1,
           }}>
           <style>{`.feed-strip::-webkit-scrollbar{display:none}`}</style>
           {CONTENT.map((c, i) => (
@@ -767,7 +822,7 @@ export default function MediFeed() {
 
         <NavBar active={navTab} setActive={setNavTab}/>
         <TopTag specialty={item.specialty} time={item.time} accent={item.accent}/>
-        <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute}/>
+        <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)}/>
         <BottomBar/>
 
         <div style={{position:"absolute",right:5,top:"50%",transform:"translateY(-50%)",display:"flex",flexDirection:"column",gap:4,zIndex:5,pointerEvents:"none"}}>
@@ -779,8 +834,9 @@ export default function MediFeed() {
 
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
-        {sheetArticle && <ArticleSheet item={sheetArticle} onClose={()=>setSheetArticle(null)}/>}
+        {sheetArticle && <ArticleSheet item={sheetArticle} onClose={()=>setSheetArticle(null)} onShare={()=>setSheetShare(true)}/>}
         {sheetComment && <QuizCommentSheet item={sheetComment} onClose={()=>setSheetComment(null)}/>}
+        {sheetShare && <ShareSheet onClose={()=>setSheetShare(null)}/>}
       </div>
     </div>
   );
