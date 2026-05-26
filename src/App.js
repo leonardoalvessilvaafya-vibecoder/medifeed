@@ -97,8 +97,13 @@ const AuthorMeta = ({ item, onAuthorTap }) => (
 const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [isSeeking, setIsSeeking] = useState(false);
+  const [seekTime, setSeekTime] = useState(0);
   const fbTimer = useRef(null);
   const videoRef = useRef(null);
+  const seekBarRef = useRef(null);
+  const wasPlayingRef = useRef(false);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -108,6 +113,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
       v.muted = isMuted;
       v.play().catch(() => {});
       setIsPlaying(true);
+      setProgress(0);
     } else {
       v.pause();
       setIsPlaying(false);
@@ -121,7 +127,49 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
 
   useEffect(() => () => clearTimeout(fbTimer.current), []);
 
+  const formatTime = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+
+  const getSeekRatio = (clientX) => {
+    const bar = seekBarRef.current;
+    if (!bar) return 0;
+    const r = bar.getBoundingClientRect();
+    return Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+  };
+
+  const handleSeekDown = (e) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v || !v.duration) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    wasPlayingRef.current = isPlaying;
+    v.pause();
+    setIsSeeking(true);
+    const ratio = getSeekRatio(e.clientX);
+    const t = ratio * v.duration;
+    setProgress(ratio);
+    setSeekTime(t);
+    v.currentTime = t;
+  };
+
+  const handleSeekMove = (e) => {
+    if (!isSeeking) return;
+    const v = videoRef.current;
+    if (!v || !v.duration) return;
+    const ratio = getSeekRatio(e.clientX);
+    const t = ratio * v.duration;
+    setProgress(ratio);
+    setSeekTime(t);
+    v.currentTime = t;
+  };
+
+  const handleSeekUp = () => {
+    if (!isSeeking) return;
+    setIsSeeking(false);
+    if (wasPlayingRef.current) videoRef.current?.play().catch(() => {});
+  };
+
   const handleTap = () => {
+    if (isSeeking) return;
     const v = videoRef.current;
     if (!v) return;
     const next = !isPlaying;
@@ -141,7 +189,13 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           ref={videoRef}
           src={item.videoSrc}
           muted loop playsInline
-          style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}
+          onTimeUpdate={() => {
+            const v = videoRef.current;
+            if (!v || isSeeking || !v.duration) return;
+            setProgress(v.currentTime / v.duration);
+          }}
+          style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",
+            filter:isSeeking?"blur(3px)":"none",transition:isSeeking?"none":"filter .25s"}}
         />
       ) : item.youtubeId ? (
         <iframe
@@ -173,6 +227,57 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
         <h2 style={{color:"white",fontSize:20,fontWeight:700,lineHeight:1.35,margin:0,textShadow:"0 2px 12px rgba(0,0,0,0.7)"}}>{item.title}</h2>
         <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
       </div>
+
+      {item.videoSrc && (
+        <div
+          ref={seekBarRef}
+          onPointerDown={handleSeekDown}
+          onPointerMove={handleSeekMove}
+          onPointerUp={handleSeekUp}
+          onPointerCancel={handleSeekUp}
+          onClick={e => e.stopPropagation()}
+          style={{position:"absolute",bottom:0,left:0,right:0,zIndex:10,
+            padding:"14px 0 0",cursor:"pointer",touchAction:"none"}}
+        >
+          {isSeeking && (
+            <div style={{
+              position:"absolute",
+              bottom:"100%",
+              left:`clamp(24px, calc(${progress*100}% ), calc(100% - 24px))`,
+              transform:"translateX(-50%)",
+              marginBottom:10,
+              background:"rgba(10,10,10,0.82)",
+              backdropFilter:"blur(8px)",
+              color:"white",fontSize:13,fontWeight:700,
+              padding:"5px 10px",borderRadius:8,
+              pointerEvents:"none",whiteSpace:"nowrap",
+              border:"1px solid rgba(255,255,255,0.15)",
+              boxShadow:"0 4px 12px rgba(0,0,0,0.4)"
+            }}>
+              {formatTime(seekTime)}
+            </div>
+          )}
+          <div style={{position:"relative",width:"100%",height:isSeeking?5:3,
+            background:"rgba(255,255,255,0.28)",transition:"height .15s"}}>
+            <div style={{position:"absolute",left:0,top:0,bottom:0,
+              width:`${progress*100}%`,
+              background:"linear-gradient(to right,#CD1C61,#3A439C)",
+              borderRadius:"0 2px 2px 0"}}/>
+            <div style={{
+              position:"absolute",
+              left:`${progress*100}%`,
+              top:"50%",
+              transform:"translate(-50%,-50%)",
+              width:isSeeking?16:12,height:isSeeking?16:12,
+              borderRadius:"50%",background:"white",
+              boxShadow:"0 2px 8px rgba(0,0,0,0.5)",
+              border:"2px solid #CD1C61",
+              transition:isSeeking?"none":"width .15s,height .15s",
+              pointerEvents:"none"
+            }}/>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
