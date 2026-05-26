@@ -104,6 +104,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   const videoRef = useRef(null);
   const seekBarRef = useRef(null);
   const wasPlayingRef = useRef(false);
+  const isSeekingRef = useRef(false);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -129,43 +130,40 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
 
   const formatTime = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
 
-  const getSeekRatio = (clientX) => {
-    const bar = seekBarRef.current;
-    if (!bar) return 0;
-    const r = bar.getBoundingClientRect();
-    return Math.max(0, Math.min(1, (clientX - r.left) / r.width));
-  };
-
   const handleSeekDown = (e) => {
     e.stopPropagation();
     const v = videoRef.current;
     if (!v || !v.duration) return;
-    e.currentTarget.setPointerCapture(e.pointerId);
     wasPlayingRef.current = isPlaying;
+    isSeekingRef.current = true;
     v.pause();
     setIsSeeking(true);
-    const ratio = getSeekRatio(e.clientX);
-    const t = ratio * v.duration;
-    setProgress(ratio);
-    setSeekTime(t);
-    v.currentTime = t;
-  };
 
-  const handleSeekMove = (e) => {
-    if (!isSeeking) return;
-    const v = videoRef.current;
-    if (!v || !v.duration) return;
-    const ratio = getSeekRatio(e.clientX);
-    const t = ratio * v.duration;
-    setProgress(ratio);
-    setSeekTime(t);
-    v.currentTime = t;
-  };
+    const applySeek = (clientX) => {
+      const bar = seekBarRef.current;
+      if (!bar || !v.duration) return;
+      const r = bar.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+      const t = ratio * v.duration;
+      setProgress(ratio);
+      setSeekTime(t);
+      v.currentTime = t;
+    };
 
-  const handleSeekUp = () => {
-    if (!isSeeking) return;
-    setIsSeeking(false);
-    if (wasPlayingRef.current) videoRef.current?.play().catch(() => {});
+    applySeek(e.clientX);
+
+    const onMove = (ev) => applySeek(ev.clientX);
+    const onUp = () => {
+      isSeekingRef.current = false;
+      setIsSeeking(false);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      if (wasPlayingRef.current) v.play().catch(() => {});
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
   };
 
   const handleTap = () => {
@@ -191,7 +189,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           muted loop playsInline
           onTimeUpdate={() => {
             const v = videoRef.current;
-            if (!v || isSeeking || !v.duration) return;
+            if (!v || isSeekingRef.current || !v.duration) return;
             setProgress(v.currentTime / v.duration);
           }}
           style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",
@@ -220,7 +218,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           </div>
         </div>
       )}
-      <div onClick={e=>e.stopPropagation()} style={{position:"absolute",bottom:96,left:18,right:64,zIndex:3}}>
+      <div onClick={e=>e.stopPropagation()} style={{position:"absolute",bottom:112,left:18,right:64,zIndex:3}}>
         {item.refs && <button onClick={e=>{e.stopPropagation();onRefsTap&&onRefsTap();}} style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:10,background:"none",border:"none",padding:0,cursor:"pointer",color:"rgba(255,255,255,0.55)",fontSize:11,fontWeight:600}}>
           <span className="material-symbols-rounded" style={{fontSize:14,fontVariationSettings:"'FILL' 0,'wght' 300"}}>menu_book</span>Referências
         </button>}
@@ -232,9 +230,6 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
         <div
           ref={seekBarRef}
           onPointerDown={handleSeekDown}
-          onPointerMove={handleSeekMove}
-          onPointerUp={handleSeekUp}
-          onPointerCancel={handleSeekUp}
           onClick={e => e.stopPropagation()}
           style={{position:"absolute",bottom:80,left:18,right:18,zIndex:10,
             padding:"10px 0",cursor:"pointer",touchAction:"none"}}
