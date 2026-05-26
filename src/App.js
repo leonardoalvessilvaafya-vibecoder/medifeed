@@ -334,17 +334,15 @@ const QuizCard = ({ item, onAuthorTap, onRefsTap, onCommentTap }) => {
         })}
       </div>
       {picked !== null && (
-        <div style={{marginTop:16,display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+        <div style={{marginTop:16,display:"flex",flexDirection:"column",gap:12}}>
           <div style={{display:"flex",alignItems:"center",gap:8}}>
             <span className="material-symbols-rounded" style={{fontSize:20,color:isCorrect?"#81c784":"#e57373",fontVariationSettings:"'FILL' 1,'wght' 400"}}>{isCorrect?"check_circle":"cancel"}</span>
             <span style={{fontSize:13,fontWeight:700,color:isCorrect?"#a5d6a7":"#ef9a9a"}}>{isCorrect?"Você acertou! Excelente raciocínio.":"Não foi dessa vez, você selecionou a alternativa incorreta."}</span>
           </div>
-          <div style={{display:"flex",gap:8}}>
-            {item.comment && <button onClick={()=>onCommentTap&&onCommentTap(item)} style={{background:"rgba(255,255,255,0.12)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:20,color:"white",fontSize:12,fontWeight:700,height:36,padding:"0 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
-              <span className="material-symbols-rounded" style={{fontSize:15,fontVariationSettings:"'FILL' 0,'wght' 300"}}>clinical_notes</span>
-              Ver comentário
-            </button>}
-          </div>
+          {item.comment && <button onClick={()=>onCommentTap&&onCommentTap(item)} style={{width:"100%",background:"rgba(255,255,255,0.12)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:20,color:"white",fontSize:12,fontWeight:700,height:44,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+            <span className="material-symbols-rounded" style={{fontSize:15,fontVariationSettings:"'FILL' 0,'wght' 300"}}>clinical_notes</span>
+            Ver comentário
+          </button>}
         </div>
       )}
       <div style={{position:"absolute",bottom:96,left:18,right:64,zIndex:2}}>
