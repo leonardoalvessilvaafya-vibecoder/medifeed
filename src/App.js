@@ -231,7 +231,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           ref={seekBarRef}
           onPointerDown={handleSeekDown}
           onClick={e => e.stopPropagation()}
-          style={{position:"absolute",bottom:80,left:18,right:18,zIndex:10,
+          style={{position:"absolute",bottom:80,left:18,right:18,zIndex:25,
             padding:"10px 0",cursor:"pointer",touchAction:"none"}}
         >
           {isSeeking && (
@@ -519,13 +519,13 @@ const TopTag = ({ specialty, time, accent }) => (
 );
 
 const BottomBar = () => (
-  <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:20,background:"linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 100%)",padding:"28px 16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+  <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:20,background:"linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 100%)",padding:"28px 16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",pointerEvents:"none"}}>
     <div style={{width:56}}/>
-    <div style={{background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,height:56,padding:"0 22px",display:"flex",alignItems:"center",gap:6,color:"white",fontSize:12,cursor:"pointer",fontWeight:600}}>
+    <div style={{background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,height:56,padding:"0 22px",display:"flex",alignItems:"center",gap:6,color:"white",fontSize:12,cursor:"pointer",fontWeight:600,pointerEvents:"auto"}}>
       <span>Para você</span>
       <span className="material-symbols-rounded" style={{fontSize:18,opacity:.6}}>expand_more</span>
     </div>
-    <button style={{background:"rgba(255,255,255,0.08)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.15)",borderRadius:"50%",width:56,height:56,cursor:"pointer",color:"white",display:"flex",alignItems:"center",justifyContent:"center"}}>
+    <button style={{background:"rgba(255,255,255,0.08)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.15)",borderRadius:"50%",width:56,height:56,cursor:"pointer",color:"white",display:"flex",alignItems:"center",justifyContent:"center",pointerEvents:"auto"}}>
       <span className="material-symbols-rounded" style={{fontSize:22}}>tune</span>
     </button>
   </div>
