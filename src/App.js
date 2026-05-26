@@ -236,8 +236,8 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           onPointerUp={handleSeekUp}
           onPointerCancel={handleSeekUp}
           onClick={e => e.stopPropagation()}
-          style={{position:"absolute",bottom:0,left:0,right:0,zIndex:10,
-            padding:"14px 0 0",cursor:"pointer",touchAction:"none"}}
+          style={{position:"absolute",bottom:80,left:18,right:18,zIndex:10,
+            padding:"10px 0",cursor:"pointer",touchAction:"none"}}
         >
           {isSeeking && (
             <div style={{
