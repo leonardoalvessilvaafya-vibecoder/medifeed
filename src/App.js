@@ -782,7 +782,7 @@ const RECOMMENDED_ARTICLES = [
 ];
 
 const RecommendedCard = ({ onArticleTap }) => (
-  <div style={{width:"100%",height:"100%",background:"#0d0d0d",display:"flex",flexDirection:"column",
+  <div style={{width:"100%",height:"100%",background:"#2C2B30",display:"flex",flexDirection:"column",
     justifyContent:"center",padding:"0 24px",boxSizing:"border-box",overflowY:"auto"}}>
     <div style={{paddingBottom:28}}>
       <h2 style={{color:"#ffffff",fontSize:18,fontWeight:800,lineHeight:1.2,letterSpacing:-0.2,margin:0}}>
