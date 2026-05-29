@@ -82,7 +82,7 @@ const EXTRA_CONTENT = [
     title:"28/05/26 | Afya News: Imunização contra VSR, OMS prioriza doença hepática e hábitos no envelhecimento",
     saves:27, likes:34,
     videoSrc:"https://res.cloudinary.com/dszbi9qer/video/upload/v1780069406/28_05_26___Afya_News_Imuniza%C3%A7%C3%A3o_contra_VSR_OMS_prioriza_doen%C3%A7a_hep%C3%A1tica_e_h%C3%A1bitos_no_envelhecimento.publer.com_rczyli.mp4" },
-  { type:"article", specialty:"Ginecologia e Obstetrícia", author:"Redação Afya", time:"27 mai 2026", duration:2,
+  { type:"article", specialty:"Ginecologia e Obstetrícia", author:"Afya", time:"27 mai 2026", duration:2,
     title:"CBGO 2026: Simpósio Satélite Afya aborda manejo de úlceras genitais",
     body:"O Portal Afya acompanha a cobertura do 63º Congresso Brasileiro de Ginecologia e Obstetrícia (CBGO 2026), um dos principais encontros científicos da especialidade no país. O evento será realizado entre 27 e 30 de maio de 2026, no Minascentro, em Belo Horizonte, Minas Gerais, reunindo ginecologistas, obstetras, residentes, estudantes de medicina e demais profissionais interessados nas atualizações em saúde da mulher.\n\nPromovido pela Federação Brasileira das Associações de Ginecologia e Obstetrícia (Febrasgo), o congresso possui programação científica voltada à atualização clínica, discussão de condutas, atividades práticas e integração entre especialistas de diferentes áreas da Ginecologia e Obstetrícia.\n\nDurante o CBGO 2026, a Afya realizará o Simpósio Satélite \"Úlceras genitais: imagens e respostas — novo algoritmo da Sociedade Internacional no auxílio do manejo\", ministrado pela ginecologista Caroline Alves de Oliveira Martins, editora-chefe de Ginecologia e Obstetrícia dos produtos digitais da Afya. A atividade abordará, de forma prática e visual, o manejo de úlceras genitais a partir de um novo algoritmo internacional. O simpósio também contará com o médico Járder Burdet, professor e editor-chefe da Afya GO.\n\nData: 29/05/2026 — 12h20 às 13h20 | Auditório D, Minas Centro. Palestrantes: Caroline Oliveira e Járder Burdet.",
     saves:18, likes:24,
@@ -315,9 +315,8 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
   );
 };
 
-const ArticlePage = ({ item, onClose, onShare }) => {
+const ArticlePage = ({ item, onClose, onShare, isSaved, onSave }) => {
   const [visible, setVisible] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
   useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
   const close = () => { setVisible(false); setTimeout(onClose, 300); };
@@ -424,13 +423,13 @@ const ArticlePage = ({ item, onClose, onShare }) => {
               fontVariationSettings:liked?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>favorite</span>
             <span style={{fontSize:13,fontWeight:700}}>{(item.likes||0)+(liked?1:0)}</span>
           </button>
-          <button onClick={()=>setSaved(s=>!s)} style={{display:"flex",alignItems:"center",gap:6,
-            background:saved?`${accentColor}0f`:"rgba(0,0,0,0.04)",
-            border:`1px solid ${saved?`${accentColor}35`:"rgba(0,0,0,0.09)"}`,
-            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:saved?accentColor:"#555",transition:"all .2s"}}>
+          <button onClick={onSave} style={{display:"flex",alignItems:"center",gap:6,
+            background:isSaved?`${accentColor}0f`:"rgba(0,0,0,0.04)",
+            border:`1px solid ${isSaved?`${accentColor}35`:"rgba(0,0,0,0.09)"}`,
+            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:isSaved?accentColor:"#555",transition:"all .2s"}}>
             <span className="material-symbols-rounded" style={{fontSize:18,
-              fontVariationSettings:saved?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>bookmark</span>
-            <span style={{fontSize:13,fontWeight:700}}>{(item.saves||0)+(saved?1:0)}</span>
+              fontVariationSettings:isSaved?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>bookmark</span>
+            <span style={{fontSize:13,fontWeight:700}}>{(item.saves||0)+(isSaved?1:0)}</span>
           </button>
         </div>
         <button onClick={onShare} style={{display:"flex",alignItems:"center",gap:6,
@@ -458,12 +457,11 @@ const ArticleCard = ({ item, onAuthorTap, onArticleTap }) => (
 
 const QUIZ_LETTERS = ["A","B","C","D"];
 
-const QuizPage = ({ item, onClose, onShare }) => {
+const QuizPage = ({ item, onClose, onShare, isSaved, onSave }) => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
   useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
   const close = () => { setVisible(false); setTimeout(onClose, 300); };
   const reset = () => { setSelected(null); setSubmitted(false); };
@@ -693,13 +691,13 @@ const QuizPage = ({ item, onClose, onShare }) => {
               fontVariationSettings:liked?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>favorite</span>
             <span style={{fontSize:13,fontWeight:700}}>{(item.likes||0)+(liked?1:0)}</span>
           </button>
-          <button onClick={()=>setSaved(s=>!s)} style={{display:"flex",alignItems:"center",gap:6,
-            background:saved?`${accentColor}0f`:"rgba(0,0,0,0.04)",
-            border:`1px solid ${saved?`${accentColor}35`:"rgba(0,0,0,0.09)"}`,
-            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:saved?accentColor:"#555",transition:"all .2s"}}>
+          <button onClick={onSave} style={{display:"flex",alignItems:"center",gap:6,
+            background:isSaved?`${accentColor}0f`:"rgba(0,0,0,0.04)",
+            border:`1px solid ${isSaved?`${accentColor}35`:"rgba(0,0,0,0.09)"}`,
+            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:isSaved?accentColor:"#555",transition:"all .2s"}}>
             <span className="material-symbols-rounded" style={{fontSize:18,
-              fontVariationSettings:saved?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>bookmark</span>
-            <span style={{fontSize:13,fontWeight:700}}>{(item.saves||0)+(saved?1:0)}</span>
+              fontVariationSettings:isSaved?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>bookmark</span>
+            <span style={{fontSize:13,fontWeight:700}}>{(item.saves||0)+(isSaved?1:0)}</span>
           </button>
         </div>
         <button onClick={onShare} style={{display:"flex",alignItems:"center",gap:6,
@@ -782,7 +780,7 @@ const RECOMMENDED_ARTICLES = [
 ];
 
 const RecommendedCard = ({ onArticleTap }) => (
-  <div style={{width:"100%",height:"100%",background:"#2C2B30",display:"flex",flexDirection:"column",
+  <div style={{width:"100%",height:"100%",background:"linear-gradient(to top,#1A1A1A 0%,#2C2B30 100%)",display:"flex",flexDirection:"column",
     justifyContent:"center",padding:"0 24px",boxSizing:"border-box",overflowY:"auto"}}>
     <div style={{paddingBottom:28}}>
       <h2 style={{color:"#ffffff",fontSize:18,fontWeight:800,lineHeight:1.2,letterSpacing:-0.2,margin:0}}>
@@ -824,9 +822,8 @@ const InvisibleBtn = ({ icon, count, active, onClick }) => (
   </button>
 );
 
-const SideActions = ({ item, isMuted, onToggleMute, onShareTap }) => {
+const SideActions = ({ item, isMuted, onToggleMute, onShareTap, isSaved, onSave }) => {
   const [liked,setLiked]=useState(false);
-  const [saved,setSaved]=useState(false);
   const isVideo=item.type==="video";
   return (
     <div style={{position:"absolute",right:14,bottom:108,zIndex:30,display:"flex",flexDirection:"column",gap:22,alignItems:"center"}}>
@@ -835,7 +832,7 @@ const SideActions = ({ item, isMuted, onToggleMute, onShareTap }) => {
           <span className="material-symbols-rounded" style={{fontSize:22,fontVariationSettings:"'FILL' 0,'wght' 300"}}>{isMuted?"volume_off":"volume_up"}</span>
         </button>
       )}
-      <InvisibleBtn icon="bookmark" count={item.saves+(saved?1:0)} active={saved} onClick={()=>setSaved(s=>!s)}/>
+      <InvisibleBtn icon="bookmark" count={item.saves+(isSaved?1:0)} active={isSaved} onClick={onSave}/>
       <InvisibleBtn icon="favorite" count={item.likes+(liked?1:0)} active={liked} onClick={()=>setLiked(l=>!l)}/>
       <button
         onPointerDown={e => e.stopPropagation()}
@@ -847,7 +844,168 @@ const SideActions = ({ item, isMuted, onToggleMute, onShareTap }) => {
   );
 };
 
-const NavBar = ({ active, setActive, lightMode }) => (
+const ProfileMenu = ({ onClose, onSavedTap }) => {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
+  const close = () => { setVisible(false); setTimeout(onClose, 300); };
+  return (
+    <div style={{position:"absolute",inset:0,zIndex:60,background:"#F2F2F7",
+      display:"flex",flexDirection:"column",
+      transform:visible?"translateX(0)":"translateX(100%)",
+      transition:"transform 0.32s cubic-bezier(0.4,0,0.2,1)"}}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",
+        padding:"58px 20px 28px"}}>
+        <div style={{display:"flex",alignItems:"center",gap:12}}>
+          <div style={{width:46,height:46,borderRadius:"50%",background:"#ddd",
+            overflow:"hidden",flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
+            <span className="material-symbols-rounded"
+              style={{fontSize:46,color:"#aaa",lineHeight:1,
+                fontVariationSettings:"'FILL' 1,'wght' 400"}}>account_circle</span>
+          </div>
+          <span style={{fontSize:18,fontWeight:700,color:"#111"}}>Olá, Carolina</span>
+        </div>
+        <button onClick={close} style={{background:"none",border:"none",cursor:"pointer",
+          padding:6,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <span className="material-symbols-rounded"
+            style={{fontSize:22,color:"#666",fontVariationSettings:"'FILL' 0,'wght' 400"}}>close</span>
+        </button>
+      </div>
+      <div style={{padding:"0 16px",display:"flex",flexDirection:"column",gap:12}}>
+        {[
+          {icon:"help",label:"Perguntas frequentes",onTap:()=>{}},
+          {icon:"bookmark",label:"Conteúdos salvos",onTap:onSavedTap},
+        ].map(({icon,label,onTap})=>(
+          <div key={label} onClick={onTap} style={{background:"white",borderRadius:18,padding:"18px 16px",
+            display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
+            <div style={{display:"flex",alignItems:"center",gap:12}}>
+              <span className="material-symbols-rounded"
+                style={{fontSize:22,color:"#333",fontVariationSettings:"'FILL' 0,'wght' 400"}}>{icon}</span>
+              <span style={{fontSize:15,fontWeight:600,color:"#111"}}>{label}</span>
+            </div>
+            <span className="material-symbols-rounded"
+              style={{fontSize:20,color:"#bbb",fontVariationSettings:"'FILL' 0,'wght' 400"}}>chevron_right</span>
+          </div>
+        ))}
+      </div>
+      <div style={{flex:1,display:"flex",alignItems:"flex-end",justifyContent:"center",paddingBottom:52}}>
+        <button style={{display:"flex",alignItems:"center",gap:8,background:"none",
+          border:"1.5px solid #ccc",borderRadius:28,padding:"13px 30px",cursor:"pointer"}}>
+          <span style={{fontSize:15,fontWeight:600,color:"#111"}}>Sair</span>
+          <span className="material-symbols-rounded"
+            style={{fontSize:18,color:"#111",fontVariationSettings:"'FILL' 0,'wght' 400"}}>logout</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const SAVED_FILTERS = [
+  {label:"Artigos", type:"article"},
+  {label:"Quizzes", type:"quiz"},
+  {label:"Vídeos",  type:"video"},
+];
+
+const SavedPage = ({ items, onClose, onArticleTap, onQuizTap }) => {
+  const [visible, setVisible] = useState(false);
+  const [filter, setFilter] = useState(null);
+  useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
+  const close = () => { setVisible(false); setTimeout(onClose, 300); };
+
+  const filtered = filter ? items.filter(it => it.type === filter) : items;
+  const typeLabel = { article:"Artigo", quiz:"Quiz", video:"Vídeo" };
+  const typeIcon  = { article:"description", quiz:"quiz", video:"play_arrow" };
+
+  return (
+    <div style={{position:"absolute",inset:0,zIndex:62,background:"#F4EFF4",
+      display:"flex",flexDirection:"column",
+      transform:visible?"translateX(0)":"translateX(100%)",
+      transition:"transform 0.32s cubic-bezier(0.4,0,0.2,1)"}}>
+
+      {/* Header */}
+      <div style={{display:"flex",alignItems:"center",gap:12,padding:"56px 20px 0"}}>
+        <button onClick={close} style={{background:"none",border:"none",cursor:"pointer",padding:4,display:"flex"}}>
+          <span className="material-symbols-rounded"
+            style={{fontSize:22,color:"#333",fontVariationSettings:"'FILL' 0,'wght' 400"}}>arrow_back</span>
+        </button>
+      </div>
+
+      {/* Title */}
+      <div style={{padding:"20px 20px 0"}}>
+        <h1 style={{margin:0,fontSize:18,fontWeight:800,color:"#111",letterSpacing:-0.5}}>Conteúdos salvos</h1>
+      </div>
+
+      {/* Filter chips */}
+      <div style={{display:"flex",gap:8,padding:"16px 20px",overflowX:"auto",flexShrink:0}}>
+        {SAVED_FILTERS.map(f=>(
+          <button key={f.type} onClick={()=>setFilter(filter===f.type?null:f.type)}
+            style={{flexShrink:0,padding:"8px 18px",borderRadius:24,cursor:"pointer",fontSize:14,fontWeight:600,
+              border:`1.5px solid ${filter===f.type?"#111":"rgba(0,0,0,0.15)"}`,
+              background:filter===f.type?"#111":"white",
+              color:filter===f.type?"white":"#333",transition:"all .2s"}}>
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid */}
+      <div style={{flex:1,overflowY:"auto",padding:"4px 16px 40px"}}>
+        {filtered.length === 0 ? (
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+            height:"60%",gap:12,opacity:0.5}}>
+            <span className="material-symbols-rounded"
+              style={{fontSize:48,color:"#888",fontVariationSettings:"'FILL' 0,'wght' 300"}}>bookmark</span>
+            <span style={{fontSize:15,color:"#666",fontWeight:500,textAlign:"center",lineHeight:1.5}}>
+              {filter ? "Nenhum conteúdo salvo nesta categoria" : "Você ainda não salvou nenhum conteúdo"}
+            </span>
+          </div>
+        ) : (
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+            {filtered.map((it, i) => {
+              const label = typeLabel[it.type] || it.type;
+              const icon  = typeIcon[it.type]  || "article";
+              const tap = it.type==="article" ? ()=>onArticleTap(it)
+                        : it.type==="quiz"    ? ()=>onQuizTap(it)
+                        : ()=>{};
+              return (
+                <div key={i} onClick={tap}
+                  style={{borderRadius:20,overflow:"hidden",height:210,
+                    background:it.bg||"#2261B1",cursor:"pointer",
+                    position:"relative",display:"flex",flexDirection:"column",justifyContent:"space-between",
+                    padding:"14px 14px 16px"}}>
+                  {/* Type label */}
+                  <span style={{fontSize:11,fontWeight:700,color:"rgba(255,255,255,0.85)",
+                    textTransform:"capitalize"}}>{label}</span>
+                  {/* Top-right icon */}
+                  <div style={{position:"absolute",top:14,right:14,
+                    width:44,height:44,borderRadius:"50%",
+                    background:"rgba(255,255,255,0.15)",backdropFilter:"blur(8px)",
+                    display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span className="material-symbols-rounded"
+                      style={{fontSize:it.type==="video"?26:20,color:"rgba(255,255,255,0.9)",
+                        fontVariationSettings:"'FILL' 0,'wght' 300"}}>{icon}</span>
+                  </div>
+                  {/* Bottom info */}
+                  <div>
+                    <div style={{fontSize:13,fontWeight:700,color:"white",lineHeight:1.35,
+                      marginBottom:4,display:"-webkit-box",WebkitLineClamp:2,
+                      WebkitBoxOrient:"vertical",overflow:"hidden"}}>
+                      {it.title}
+                    </div>
+                    <div style={{fontSize:11,color:"rgba(255,255,255,0.65)",fontWeight:500}}>
+                      {it.duration} min
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const NavBar = ({ active, setActive, lightMode, onMenuTap }) => (
   <div style={{position:"absolute",top:0,left:0,right:0,zIndex:20,
     background:lightMode?"transparent":"linear-gradient(to bottom,rgba(0,0,0,0.65) 0%,transparent 100%)",
     display:"flex",alignItems:"center",justifyContent:"space-between",padding:"18px 18px 32px"}}>
@@ -860,8 +1018,8 @@ const NavBar = ({ active, setActive, lightMode }) => (
           paddingBottom:4}}>{t}</button>
       ))}
     </div>
-    <button style={{background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:"6px",width:36,height:36}}>
-      {[0,1,2].map(i=><span key={i} style={{display:"block",width:20,height:1.8,
+    <button onClick={onMenuTap} style={{background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:"6px",width:36,height:36}}>
+      {[0,1,2].map(i=><span key={i} style={{display:"block",width:16,height:1.8,
         background:lightMode?"rgba(0,0,0,0.5)":"rgba(255,255,255,0.85)",borderRadius:2}}/>)}
     </button>
   </div>
@@ -1093,7 +1251,16 @@ export default function MediFeed() {
   const [sheetArticle, setSheetArticle] = useState(null);
   const [sheetQuiz, setSheetQuiz] = useState(null);
   const [sheetShare, setSheetShare] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showSaved, setShowSaved] = useState(false);
+  const [savedItems, setSavedItems] = useState([]);
   const [isMuted, setIsMuted] = useState(true);
+  const isSaved = (it) => savedItems.some(s => s.title === it.title);
+  const toggleSave = (it) => setSavedItems(prev =>
+    prev.some(s => s.title === it.title)
+      ? prev.filter(s => s.title !== it.title)
+      : [...prev, it]
+  );
   const scrollRef = useRef(null);
   const ticking = useRef(false);
 
@@ -1182,7 +1349,7 @@ export default function MediFeed() {
             </div>
           ))}
           <div style={{width:"100%",height:H,flexShrink:0,scrollSnapAlign:"start",scrollSnapStop:"always",position:"relative",overflow:"hidden"}}>
-            <EndOfFeedCard onHistoryTap={()=>{}}/>
+            <EndOfFeedCard onHistoryTap={()=>scrollRef.current?.scrollTo({top:(CONTENT.length+1)*H,behavior:"smooth"})}/>
           </div>
           {EXTRA_CONTENT.map((c, i) => {
             const idx = CONTENT.length + 1 + i;
@@ -1196,9 +1363,9 @@ export default function MediFeed() {
           })}
         </div>
 
-        <NavBar active={navTab} setActive={setNavTab}/>
+        <NavBar active={navTab} setActive={setNavTab} onMenuTap={()=>setShowProfile(true)}/>
         {!isEndCard && !isRecommendedCard && <TopTag specialty={item.specialty} time={item.time} accent={item.accent}/>}
-        {!isEndCard && !isRecommendedCard && <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)}/>}
+        {!isEndCard && !isRecommendedCard && <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)} isSaved={isSaved(item)} onSave={()=>toggleSave(item)}/>}
         <BottomBar/>
 
         <div style={{position:"absolute",right:5,top:"50%",transform:"translateY(-50%)",display:"flex",flexDirection:"column",gap:4,zIndex:5,pointerEvents:"none"}}>
@@ -1210,9 +1377,11 @@ export default function MediFeed() {
 
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
-        {sheetArticle && <ArticlePage item={sheetArticle} onClose={()=>setSheetArticle(null)} onShare={()=>setSheetShare(true)}/>}
-        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>setSheetQuiz(null)} onShare={()=>setSheetShare(true)}/>}
+        {sheetArticle && <ArticlePage item={sheetArticle} onClose={()=>setSheetArticle(null)} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetArticle)} onSave={()=>toggleSave(sheetArticle)}/>}
+        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>setSheetQuiz(null)} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetQuiz)} onSave={()=>toggleSave(sheetQuiz)}/>}
         {sheetShare && <ShareSheet onClose={()=>setSheetShare(null)}/>}
+        {showProfile && <ProfileMenu onClose={()=>setShowProfile(false)} onSavedTap={()=>setShowSaved(true)}/>}
+        {showSaved && <SavedPage items={savedItems} onClose={()=>setShowSaved(false)} onArticleTap={it=>{setShowSaved(false);setShowProfile(false);setSheetArticle(it);}} onQuizTap={it=>{setShowSaved(false);setShowProfile(false);setSheetQuiz(it);}}/>}
       </div>
     </div>
   );
