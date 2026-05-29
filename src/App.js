@@ -77,6 +77,44 @@ const N = Math.min(VIDEOS.length, QUIZZES.length, ARTICLES.length);
 for(let i=0;i<N;i++){ CONTENT.push(VIDEOS[i]); CONTENT.push(QUIZZES[i]); CONTENT.push(ARTICLES[i]); }
 CONTENT.forEach(c => { const col=getSpecialtyColor(c.specialty); c.bg=col.grad; c.accent=col.base; c.bgBase=col.base; });
 
+const EXTRA_CONTENT = [
+  { type:"video", specialty:"Afya News", author:"Afya", time:"28 mai 2026", duration:3,
+    title:"28/05/26 | Afya News: Imunização contra VSR, OMS prioriza doença hepática e hábitos no envelhecimento",
+    saves:27, likes:34,
+    videoSrc:"https://res.cloudinary.com/dszbi9qer/video/upload/v1780069406/28_05_26___Afya_News_Imuniza%C3%A7%C3%A3o_contra_VSR_OMS_prioriza_doen%C3%A7a_hep%C3%A1tica_e_h%C3%A1bitos_no_envelhecimento.publer.com_rczyli.mp4" },
+  { type:"article", specialty:"Ginecologia e Obstetrícia", author:"Redação Afya", time:"27 mai 2026", duration:2,
+    title:"CBGO 2026: Simpósio Satélite Afya aborda manejo de úlceras genitais",
+    body:"O Portal Afya acompanha a cobertura do 63º Congresso Brasileiro de Ginecologia e Obstetrícia (CBGO 2026), um dos principais encontros científicos da especialidade no país. O evento será realizado entre 27 e 30 de maio de 2026, no Minascentro, em Belo Horizonte, Minas Gerais, reunindo ginecologistas, obstetras, residentes, estudantes de medicina e demais profissionais interessados nas atualizações em saúde da mulher.\n\nPromovido pela Federação Brasileira das Associações de Ginecologia e Obstetrícia (Febrasgo), o congresso possui programação científica voltada à atualização clínica, discussão de condutas, atividades práticas e integração entre especialistas de diferentes áreas da Ginecologia e Obstetrícia.\n\nDurante o CBGO 2026, a Afya realizará o Simpósio Satélite \"Úlceras genitais: imagens e respostas — novo algoritmo da Sociedade Internacional no auxílio do manejo\", ministrado pela ginecologista Caroline Alves de Oliveira Martins, editora-chefe de Ginecologia e Obstetrícia dos produtos digitais da Afya. A atividade abordará, de forma prática e visual, o manejo de úlceras genitais a partir de um novo algoritmo internacional. O simpósio também contará com o médico Járder Burdet, professor e editor-chefe da Afya GO.\n\nData: 29/05/2026 — 12h20 às 13h20 | Auditório D, Minas Centro. Palestrantes: Caroline Oliveira e Járder Burdet.",
+    saves:18, likes:24,
+    refs:"https://portal.afya.com.br/ginecologia-e-obstetricia/cbgo-2026-confira-a-cobertura" },
+  { type:"article", specialty:"Cardiologia", author:"Juliana Avelar", time:"28 mai 2026", duration:12,
+    title:"Cuidado pós-parto para pacientes com doença cardiovascular: ACC 2026",
+    body:"O período pós-parto é uma oportunidade crítica para engajamento na melhora dos desfechos cardiometabólicos de curto e longo prazo. Mais da metade das mortes relacionadas à gestação ocorre após o nascimento do bebê, e morbidade substancial surge no período pós-parto precoce. Durante essas primeiras semanas, aproximadamente 60% dos casos de insuficiência cardíaca associada à gravidez ocorrem, e o risco de acidente vascular cerebral hemorrágico aumenta em mais de quatro vezes.\n\nOs indivíduos de maior risco incluem não apenas aqueles com doenças cardíacas, mas também aqueles com fatores de risco como hipertensão, obesidade e dislipidemia, além de fatores amplificadores como desfechos adversos da gestação — diabetes gestacional, distúrbios hipertensivos da gravidez e parto prematuro.\n\nUma revisão dos Maternal Mortality Review Committees estaduais identificou fatores relacionados ao profissional de saúde como o principal responsável por 34,8% de todas as mortes maternas, incluindo falha em reconhecer doença crítica, oferta de tratamento ineficaz e falha em encaminhamento. Outros 21,7% das mortes estiveram relacionados a falta de comunicação e coordenação inadequada do cuidado.\n\nA amamentação associa-se à melhora da saúde cardiometabólica materna a longo prazo. As evidências atuais indicam que a amamentação não se associa a piora da função cardíaca em pessoas com cardiopatias estruturais, incluindo cardiomiopatia periparto. O arsenal de medicações seguras na lactação é maior do que durante a gravidez — a maioria das medicações cardiovasculares é compatível com amamentação.\n\nO planejamento contraceptivo deve começar ainda no período antenatal. Pílulas contendo apenas progesterona são consideradas seguras (MEC 1 ou 2) para todas as condições cardiovasculares durante o pós-parto e amamentação. O ACOG apoia inserção imediata pós-parto de métodos reversíveis de longa duração antes da alta hospitalar.\n\nA pressão arterial pós-parto é mais baixa no dia do parto, porém atinge pico ao redor de 5 a 7 dias, devido à mobilização de líquido extracelular. Esse aumento é mais pronunciado em pacientes com distúrbios hipertensivos, elevando o risco de hipertensão grave — PAS ≥ 160 mmHg ou PAD ≥ 110 mmHg —, considerada emergência médica.\n\nSinais de alerta cardiovasculares no pós-parto incluem: dispneia em repouso, dor torácica, ortopneia, FC ≥ 120 bpm, PAS ≥ 160 mmHg ou < 90 mmHg, PAD ≥ 110 mmHg, sopro diastólico, B3 ou B4, sibilos ou crepitações pulmonares e turgência jugular.\n\nPacientes com maior risco de complicações cardiovasculares — hipertensão pulmonar, disfunção ventricular significativa, cardiopatias congênitas complexas e valvopatias obstrutivas graves — podem necessitar monitorização intensiva em UTI por pelo menos 24 a 72 horas após o parto.\n\nO manejo da anticoagulação no pós-parto requer equilíbrio entre risco tromboembólico e hemorrágico. O estado hipercoagulável da gestação persiste por várias semanas após o parto, especialmente nas primeiras 6 semanas. A varfarina é compatível com lactação; os anticoagulantes orais diretos geralmente não são recomendados para lactantes.\n\nDistúrbios hipertensivos da gestação devem ser encarados como o primeiro evento cardiovascular da paciente. A diretriz recomenda considerar limiar terapêutico de ≥ 130/80 mmHg para início ou intensificação do tratamento anti-hipertensivo no pós-parto. Anti-hipertensivos preferidos durante lactação: nifedipina, anlodipina, labetalol, enalapril e captopril.\n\nA gestação fornece informações prognósticas únicas sobre saúde cardiovascular futura. Desfechos adversos como pré-eclâmpsia, diabetes gestacional e parto prematuro associam-se a aumento significativo do risco futuro de hipertensão crônica, doença arterial coronariana, insuficiência cardíaca e AVC. O histórico obstétrico deve integrar a estratificação de risco cardiovascular ao longo de toda a vida da paciente.\n\nA otimização do cuidado cardiovascular pós-parto começa antes do nascimento e se estende ao longo do primeiro ano após o parto. Um modelo de cuidado colaborativo, multidisciplinar e centrado na paciente é essencial para redução da morbidade e mortalidade maternas e promoção da saúde cardiovascular ao longo da vida.",
+    saves:52, likes:67,
+    refs:[{label:"Lindley K et al. Optimization of Postpartum Care for Patients With and at Risk for Premature and Long-Term Cardiovascular Disease: 2026 ACC Expert Consensus Decision Pathway. JACC. 2026.", url:"https://doi.org/10.1016/j.jacc.2025.11.001"}] },
+  { type:"recommended", specialty:"", author:"", time:"", saves:0, likes:0 },
+];
+EXTRA_CONTENT.forEach(c => { const col=getSpecialtyColor(c.specialty); c.bg=col.grad; c.accent=col.base; c.bgBase=col.base; });
+
+const RECOMMENDED_FULL = [
+  { type:"article", specialty:"Endocrinologia", author:"Erik Trovão", time:"27 mai 2026", duration:3,
+    title:"Alterações metabólicas da SOMP: como influenciou a mudança de nome da síndrome",
+    saves:27, likes:35,
+    body:"A recente proposta internacional publicada no The Lancet para mudar o nome da síndrome dos ovários policísticos para síndrome ovariana metabólica poliendócrina (SOMP) tem como uma de suas principais justificativas a importância de enfatizar a característica multissistêmica da síndrome, incluindo as alterações metabólicas e o aumento do risco cardiovascular envolvidos. Desta forma, a SOMP deve ser entendida não apenas como um distúrbio reprodutivo, mas também como uma doença metabólica sistêmica. Alterações metabólicas como resistência à insulina, hiperinsulinemia, obesidade, dislipidemia e doença hepática esteatótica associada à disfunção metabólica (MASLD) estão presentes desde fases precoces da vida e exercem importante impacto sobre morbidade cardiovascular e metabólica de longo prazo.\n\nA fisiopatologia da SOMP é resultado da interação complexa entre fatores genéticos, epigenéticos, ambientais e neuroendócrinos. Alterações na pulsatilidade do GnRH promovem aumento relativo da secreção de LH em relação ao FSH, favorecendo hiperandrogenismo ovariano e disfunção ovulatória. Paralelamente, a resistência à insulina ocupa posição central no modelo fisiopatológico da doença, sendo observada inclusive em mulheres magras. A hiperinsulinemia compensatória estimula diretamente a esteroidogênese ovariana, reduz a síntese hepática de SHBG e amplifica a produção adrenal de andrógenos, perpetuando o hiperandrogenismo e agravando a disfunção metabólica.\n\nO tecido adiposo também desempenha papel fundamental na fisiopatologia da SOMP. Mais do que alterações na distribuição de gordura corporal, há evidências consistentes de disfunção adipocitária intrínseca, caracterizada por hipertrofia dos adipócitos, lipólise desregulada, infiltração inflamatória e secreção alterada de adipocinas. Essas alterações favorecem inflamação crônica, estresse oxidativo e resistência à insulina sistêmica. O hiperandrogenismo contribui adicionalmente para esse processo ao promover piora da adipogênese, aumento do acúmulo lipídico ectópico e redução da sensibilidade insulínica em músculo esquelético e fígado.\n\nOs fenótipos clínicos da SOMP apresentam heterogeneidade importante. Os fenótipos clássicos hiperandrogênicos, particularmente os definidos pelos critérios do NIH, associam-se a maior prevalência de obesidade, resistência à insulina, hipertrigliceridemia, redução de HDL-colesterol e síndrome metabólica. Já o fenótipo normoandrogênico tende a apresentar perfil cardiometabólico mais favorável. Ainda assim, mesmo mulheres magras e sem hiperandrogenismo podem apresentar alterações metabólicas sutis.\n\nDo ponto de vista genético, múltiplos loci relacionados à secreção gonadotrófica, biossíntese androgênica, desenvolvimento folicular e regulação metabólica já foram identificados em estudos de associação genômica. Além disso, evidências crescentes sugerem influência epigenética e programação fetal na origem da síndrome. Filhas de mulheres com SOMP apresentam risco significativamente maior de desenvolver a doença, enquanto filhos do sexo masculino demonstram maior prevalência de obesidade, dislipidemia e resistência à insulina, sustentando a hipótese de um possível equivalente masculino da SOP.\n\nDesta forma, o olhar sobre as mulheres com SOMP deve ir além da questão reprodutiva e incluir as alterações multissistêmicas que elas podem apresentar, incluindo a maior prevalência de intolerância à glicose, diabetes mellitus tipo 2, diabetes gestacional, dislipidemia, síndrome metabólica, MASLD e aumento do risco cardiovascular.",
+    refs:[{label:"Proposição internacional para renomeação da SOP para SOMP. The Lancet, 2024.", url:"https://portal.afya.com.br/endocrinologia/alteracoes-metabolicas-da-somp-como-influenciou-a-mudanca-de-nome-da-sindrome"}] },
+  { type:"article", specialty:"Cardiologia", author:"Juliana Avelar", time:"29 mai 2026", duration:7,
+    title:"Otimização da pressão arterial após AVC: novas fronteiras",
+    saves:48, likes:62,
+    body:"A hipertensão arterial (HAS) é o principal fator de risco modificável para prevenção de eventos cardiovasculares em pessoas que já tiveram AVC ou ataque isquêmico transitório (AIT). Entretanto, apenas aproximadamente um em cada três pacientes pós-AVC apresenta controle adequado da pressão arterial, o que destaca a necessidade de mudança dos modelos convencionais de cuidado. Novas prioridades incluem adoção mais ampla de terapia anti-hipertensiva combinada para manter a pressão arterial sistólica abaixo de 130 mmHg, com ênfase em regimes simplificados e combinações em comprimido único.\n\nEmbora ensaios clínicos tenham estabelecido claramente os benefícios de longo prazo do controle efetivo da pressão arterial para prevenção secundária do AVC, a lacuna de implementação para traduzir essas evidências para a prática clínica continua ampla. Apesar de a maioria dos pacientes receber terapia anti-hipertensiva antes da alta hospitalar após um AVC, o cuidado pós-alta é fragmentado e inadequado para permitir o alcance das metas pressóricas recomendadas.\n\nEstudos epidemiológicos confirmaram uma relação linear entre pressão arterial e risco cardiovascular a partir de valores de pressão sistólica tão baixos quanto 110 mmHg em todas as idades, sexos e grupos étnicos, de forma que uma redução de 10 mmHg na pressão arterial sistólica pode se traduzir em redução de até um terço no risco de AVC recorrente e redução de 10–20% no risco de qualquer evento cardiovascular grave.\n\nEstudos em animais demonstram que a parede arterial degenera pela exposição à hipertensão arterial, com alterações endoteliais e permeabilidade alterada da barreira hematoencefálica. O dano vascular endotelial está associado à liberação de endotelina, radicais livres e citocinas. O AVC isquêmico corresponde a aproximadamente 85% dos AVCs no mundo e resulta de lesão arterial levando à aterosclerose e aterotrombose. A hipertensão também pode causar doença de pequenos vasos por estresse mecânico, predispondo a infartos lacunares e micro-hemorragias.\n\nAs evidências são claras de que a terapia anti-hipertensiva melhora desfechos cardiovasculares em pacientes com história de AVC. O Chinese Post-Stroke Antihypertensive Study demonstrou que reduções modestas de 5/2 mmHg através do uso de indapamida reduziram o risco de AVC recorrente em 29% comparado ao placebo. O estudo HOPE demonstrou que o IECA ramipril reduziu o risco de AVC recorrente em quase 25%.\n\nOs dados mais influentes são provenientes do estudo PROGRESS, no qual 6105 pacientes com AVC ou AIT prévios foram randomizados para tratamento com perindopril e indapamida ou placebo. Houve redução de 28% no risco de AVC recorrente no grupo tratamento. A terapia combinada produziu reduções ainda maiores — redução pressórica de 12/5 mmHg e redução de 43% no risco relativo de AVC. Notavelmente, a incidência de AVC também foi reduzida em participantes com pressão arterial basal média de 136/79 mmHg, considerados não hipertensos.\n\nAs diretrizes da European Stroke Organisation recomendam terapia anti-hipertensiva combinada para prevenção secundária. A diretriz AHA/ASA de 2021 recomenda IECA, BRA ou diurético tiazídico-like. Metanálises em rede classificam a combinação de IECA e diurético como estratégia preferencial. A meta para pacientes com AVC prévio deve ser pressão arterial sistólica inferior a 130 mmHg.\n\nEvidências crescentes sugerem que estratégias inovadoras e centradas no paciente são cruciais para melhorar o controle pressórico pós-AVC. Monoterapia em dose padrão reduz PAS em média 8,7 mmHg, enquanto combinações duplas promovem redução média de 14,9 mmHg. As diretrizes norte-americanas apoiam início de terapia anti-hipertensiva dupla, preferencialmente como combinação em comprimido único.\n\nNovas terapias anti-hipertensivas oferecem potencial para enfrentar inércia terapêutica e baixa adesão. Terapias com RNA de interferência direcionadas à produção hepática de angiotensinogênio promovem redução prolongada com doses infrequentes. Estudos com zilebesiran mostraram reduções significativas e sustentadas com administração semestral. Inibidores da aldosterona sintase representam nova classe promissora para hipertensão resistente.\n\nOs autores destacam que metas pressóricas ideais ainda precisam ser esclarecidas em grupos de alto risco. PAS < 130 mmHg deve ser considerada alvo padrão para a maioria dos pacientes pós-AVC. Terapia combinada precoce deve ser amplamente utilizada. Combinações em comprimido único provavelmente representam o futuro do tratamento. Telemonitorização e automonitorização devem ser incorporadas ao cuidado longitudinal.",
+    refs:[{label:"Avelar J. Blood pressure optimisation after stroke: new frontiers. Lancet Neurology, 2026.", url:"https://portal.afya.com.br/cardiologia/otimizacao-da-pressao-arterial-apos-avc-novas-fronteiras-2"}] },
+  { type:"article", specialty:"Clínica Médica", author:"Leandro Lima", time:"15 mai 2026", duration:4,
+    title:"Helicobacter pylori: ACG atualiza tratamento e resgate",
+    saves:31, likes:44,
+    body:"A infecção pelo Helicobacter pylori, bactéria gram-negativa, é um dos principais fatores de risco para gastrite crônica, úlcera péptica e adenocarcinoma gástrico. Em 2024, o American College of Gastroenterology (ACG) publicou uma atualização de suas diretrizes terapêuticas, considerando o impacto crescente da resistência antimicrobiana, especialmente à claritromicina e ao levofloxacino, além de novas opções terapêuticas, como os bloqueadores competitivos do potássio (PCABs).\n\nNas novas diretrizes do ACG, a terapia quádrupla foi consolidada como primeira linha para pacientes virgens de tratamento. O esquema inclui inibidor de bomba protônica (IBP) em dose padrão duas vezes ao dia, bismuto, tetraciclina e metronidazol.\n\nA recomendação foi embasada por uma metanálise em rede com mais de 20 mil pacientes, que demonstrou superioridade desse esquema em relação ao esquema triplo clássico, composto por IBP, amoxicilina e claritromicina. As taxas de erradicação foram de 81,3% e 75,7%, respectivamente.\n\nEntre as alternativas emergentes, a vonoprazana ganhou destaque. O PCAB apresenta supressão ácida mais potente e rápida que os IBPs tradicionais, favorecendo a ação antibiótica. Assim, a terapia dupla com vonoprazana e amoxicilina, ou a terapia tripla com vonoprazana, amoxicilina e claritromicina, despontam como opções — especialmente diante da indisponibilidade do bismuto —, com taxas de erradicação próximas a 80%.\n\nOutro ponto importante é o manejo da falha terapêutica. As diretrizes enfatizam que o esquema de resgate deve ser guiado pelo tratamento prévio. Quando há falha com a terapia tripla baseada em IBP, a indicação é utilizar terapia contendo bismuto. Quando há falha com terapia contendo bismuto, a recomendação é empregar terapia tripla com rifabutina, com melhor perfil de tolerância e maior adesão.\n\nAs diretrizes reforçam a importância da confirmação de erradicação pelo menos 4 semanas após o término do tratamento. Os métodos preferenciais são o teste respiratório de ureia ou a pesquisa de antígeno fecal, por serem menos invasivos que a repetição da endoscopia digestiva alta com biópsias.\n\nNão há uma sugestão específica de IBP para a erradicação do H. pylori, embora esomeprazol e rabeprazol, assim como os PCABs, não estejam sujeitos aos genótipos de metabolizadores ultrarrápidos do CYP2C19.\n\nA terapia quádrupla com bismuto por 14 dias consolidou-se como primeira opção terapêutica. Esquemas empíricos com claritromicina perderam espaço devido à resistência antimicrobiana crescente. A vonoprazana desponta como alternativa em cenários selecionados. O tratamento de resgate deve considerar a exposição antibiótica prévia. No Brasil, conforme prévia do novo Consenso Brasileiro apresentada na SBAD 2025, a tendência é acompanhar as recomendações norte-americanas.",
+    refs:[{label:"ACG Clinical Guideline: Treatment of Helicobacter Pylori Infection. Am J Gastroenterol. 2024.", url:"https://portal.afya.com.br/clinica-medica/helicobacter-pylori-acg-atualiza-tratamento-e-resgate"}] },
+];
+RECOMMENDED_FULL.forEach(c => { const col=getSpecialtyColor(c.specialty); c.bg=col.grad; c.accent=col.base; c.bgBase=col.base; });
+
 const H = 852;
 
 const AuthorMeta = ({ item, onAuthorTap }) => (
@@ -84,7 +122,7 @@ const AuthorMeta = ({ item, onAuthorTap }) => (
     <div onClick={e=>{e.stopPropagation();onAuthorTap&&onAuthorTap();}}
       style={{display:"flex",alignItems:"center",gap:8,cursor:"pointer"}}>
       <Avatar name={item.author} size={26}/>
-      <span style={{fontSize:12,color:"rgba(255,255,255,0.7)",fontWeight:600,textShadow:"0 1px 4px rgba(0,0,0,0.6)"}}>{item.author}</span>
+      <span style={{fontSize:12,color:"rgba(255,255,255,0.7)",fontWeight:600,textShadow:"0 1px 4px rgba(0,0,0,0.6)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:180}}>{item.author}</span>
     </div>
     {item.duration && <>
       <span style={{color:"rgba(255,255,255,0.3)",fontSize:11}}>·</span>
@@ -287,7 +325,7 @@ const ArticlePage = ({ item, onClose, onShare }) => {
   const accentColor = item.accent || "#2261B1";
 
   return (
-    <div style={{position:"absolute",inset:0,zIndex:60,background:"#f5f5f7",
+    <div style={{position:"absolute",inset:0,zIndex:60,background:"white",
       transform:visible?"translateX(0)":"translateX(100%)",
       transition:"transform .3s cubic-bezier(.32,1,.4,1)",
       display:"flex",flexDirection:"column",overflow:"hidden"}}>
@@ -305,83 +343,73 @@ const ArticlePage = ({ item, onClose, onShare }) => {
 
       {/* Scrollable body */}
       <div style={{flex:1,overflowY:"auto",WebkitOverflowScrolling:"touch"}}>
+        <div style={{padding:"20px 20px 0"}}>
 
-        {/* Content card */}
-        <div style={{background:"#f5f5f7",padding:"12px 0 16px"}}>
+          {/* Title */}
+          <h1 style={{color:"#0d0d0d",fontSize:22,fontWeight:800,lineHeight:1.32,
+            margin:"0 0 14px",letterSpacing:-0.4}}>{item.title}</h1>
 
-          {/* White content block */}
-          <div style={{margin:"0 16px",borderRadius:20,background:"white",
-            boxShadow:"0 2px 16px rgba(0,0,0,0.06)",overflow:"hidden"}}>
+          {/* Meta row */}
+          <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:18,flexWrap:"wrap"}}>
+            <span style={{background:`${accentColor}18`,color:accentColor,
+              borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:700,
+              border:`1px solid ${accentColor}28`}}>{item.specialty}</span>
+            <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
+            <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>
+              Publicado {item.time}
+            </span>
+            {item.duration && <>
+              <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
+              <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>{item.duration} min de leitura</span>
+            </>}
+          </div>
 
-            <div style={{padding:"20px 20px 0"}}>
-
-              {/* Title */}
-              <h1 style={{color:"#0d0d0d",fontSize:22,fontWeight:800,lineHeight:1.32,
-                margin:"0 0 14px",letterSpacing:-0.4}}>{item.title}</h1>
-
-              {/* Meta row — abaixo do título */}
-              <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:18,flexWrap:"wrap"}}>
-                <span style={{background:`${accentColor}18`,color:accentColor,
-                  borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:700,
-                  border:`1px solid ${accentColor}28`}}>{item.specialty}</span>
-                <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
-                <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>
-                  Publicado {item.time}
-                </span>
-                {item.duration && <>
-                  <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
-                  <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>{item.duration} min de leitura</span>
-                </>}
-              </div>
-
-              {/* Author row — sem botão "Mostrar perfil" */}
-              <div style={{display:"flex",alignItems:"center",gap:12,
-                paddingBottom:20,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
-                <Avatar name={item.author} size={42}/>
-                <div style={{flex:1,minWidth:0}}>
-                  <div style={{fontSize:14,fontWeight:700,color:"#111",lineHeight:1.2,
-                    whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{item.author}</div>
-                  <div style={{fontSize:12,color:"rgba(0,0,0,0.4)",marginTop:3}}>{item.specialty}</div>
-                </div>
-              </div>
+          {/* Author row */}
+          <div style={{display:"flex",alignItems:"center",gap:12,
+            paddingBottom:20,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
+            <Avatar name={item.author} size={42}/>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:14,fontWeight:700,color:"#111",lineHeight:1.2,
+                whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{item.author}</div>
+              <div style={{fontSize:12,color:"rgba(0,0,0,0.4)",marginTop:3}}>{item.specialty}</div>
             </div>
-
-            {/* Body */}
-            <div style={{padding:"20px 20px 24px"}}>
-              {item.body.split("\n\n").map((p,i,arr)=>(
-                <p key={i} style={{color:"rgba(0,0,0,0.76)",fontSize:15.5,lineHeight:1.88,
-                  margin:i<arr.length-1?"0 0 20px":0,fontWeight:400}}>{p}</p>
-              ))}
-            </div>
-
-            {/* References */}
-            {refList.length > 0 && (
-              <div style={{margin:"0 20px 24px",paddingTop:20,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
-                <div style={{fontSize:13,fontWeight:800,color:"#111",marginBottom:14,
-                  display:"flex",alignItems:"center",gap:6}}>
-                  <span className="material-symbols-rounded" style={{fontSize:16,
-                    fontVariationSettings:"'FILL' 0,'wght' 400"}}>menu_book</span>
-                  Referências bibliográficas
-                </div>
-                {refList.map((ref,i)=>(
-                  <a key={i} href={ref.url} target="_blank" rel="noreferrer"
-                    style={{display:"flex",alignItems:"flex-start",gap:10,textDecoration:"none",
-                      padding:"10px 0",borderBottom:i<refList.length-1?"1px solid rgba(0,0,0,0.06)":"none"}}>
-                    <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
-                      width:22,height:22,borderRadius:"50%",background:`${accentColor}15`,
-                      fontSize:10,fontWeight:800,color:accentColor,flexShrink:0,marginTop:1}}>
-                      {i+1}
-                    </span>
-                    <span style={{color:"#2261B1",fontSize:12.5,fontWeight:500,
-                      lineHeight:1.55,wordBreak:"break-all"}}>
-                      {ref.label !== ref.url ? ref.label : ref.url}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
         </div>
+
+        {/* Body */}
+        <div style={{padding:"20px 20px 24px"}}>
+          {item.body.split("\n\n").map((p,i,arr)=>(
+            <p key={i} style={{color:"rgba(0,0,0,0.76)",fontSize:15.5,lineHeight:1.88,
+              margin:i<arr.length-1?"0 0 20px":0,fontWeight:400}}>{p}</p>
+          ))}
+        </div>
+
+        {/* References */}
+        {refList.length > 0 && (
+          <div style={{margin:"0 20px 24px",paddingTop:20,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
+            <div style={{fontSize:13,fontWeight:800,color:"#111",marginBottom:14,
+              display:"flex",alignItems:"center",gap:6}}>
+              <span className="material-symbols-rounded" style={{fontSize:16,
+                fontVariationSettings:"'FILL' 0,'wght' 400"}}>menu_book</span>
+              Referências bibliográficas
+            </div>
+            {refList.map((ref,i)=>(
+              <a key={i} href={ref.url} target="_blank" rel="noreferrer"
+                style={{display:"flex",alignItems:"flex-start",gap:10,textDecoration:"none",
+                  padding:"10px 0",borderBottom:i<refList.length-1?"1px solid rgba(0,0,0,0.06)":"none"}}>
+                <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
+                  width:22,height:22,borderRadius:"50%",background:`${accentColor}15`,
+                  fontSize:10,fontWeight:800,color:accentColor,flexShrink:0,marginTop:1}}>
+                  {i+1}
+                </span>
+                <span style={{color:"#2261B1",fontSize:12.5,fontWeight:500,
+                  lineHeight:1.55,wordBreak:"break-all"}}>
+                  {ref.label !== ref.url ? ref.label : ref.url}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Bottom action bar */}
@@ -430,10 +458,12 @@ const ArticleCard = ({ item, onAuthorTap, onArticleTap }) => (
 
 const QUIZ_LETTERS = ["A","B","C","D"];
 
-const QuizPage = ({ item, onClose }) => {
+const QuizPage = ({ item, onClose, onShare }) => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [saved, setSaved] = useState(false);
   useEffect(() => { requestAnimationFrame(() => setVisible(true)); }, []);
   const close = () => { setVisible(false); setTimeout(onClose, 300); };
   const reset = () => { setSelected(null); setSubmitted(false); };
@@ -444,7 +474,7 @@ const QuizPage = ({ item, onClose }) => {
   const optionStyle = (i) => {
     if (!submitted) {
       return selected === i
-        ? { bg:`${accentColor}0d`, border:accentColor, badgeBg:accentColor, badgeColor:"white", label:null, labelColor:null }
+        ? { bg:"white", border:"#111", badgeBg:"#111", badgeColor:"white", label:null, labelColor:null }
         : { bg:"#f7f7f7", border:"rgba(0,0,0,0.08)", badgeBg:"#e0e0e0", badgeColor:"#555", label:null, labelColor:null };
     }
     if (i === item.correct)
@@ -458,7 +488,7 @@ const QuizPage = ({ item, onClose }) => {
   };
 
   return (
-    <div style={{position:"absolute",inset:0,zIndex:60,background:"#f5f5f7",
+    <div style={{position:"absolute",inset:0,zIndex:60,background:"white",
       transform:visible?"translateX(0)":"translateX(100%)",
       transition:"transform .3s cubic-bezier(.32,1,.4,1)",
       display:"flex",flexDirection:"column",overflow:"hidden"}}>
@@ -472,204 +502,213 @@ const QuizPage = ({ item, onClose }) => {
       </div>
 
       <div style={{flex:1,overflowY:"auto",WebkitOverflowScrolling:"touch"}}>
-        <div style={{padding:"12px 16px 24px"}}>
-          <div style={{borderRadius:20,background:"white",boxShadow:"0 2px 16px rgba(0,0,0,0.06)",overflow:"hidden"}}>
 
-            {/* Header info */}
-            <div style={{padding:"20px 20px 0"}}>
-
-              {/* 1. Title */}
-              <h1 style={{color:"#0d0d0d",fontSize:22,fontWeight:800,lineHeight:1.32,
-                margin:"0 0 14px",letterSpacing:-0.4}}>
-                {item.title || item.q}
-              </h1>
-
-              {/* 2. Meta row: tag + data + duração */}
-              <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:18,flexWrap:"wrap"}}>
-                <span style={{background:`${accentColor}18`,color:accentColor,borderRadius:20,
-                  padding:"3px 10px",fontSize:11,fontWeight:700,border:`1px solid ${accentColor}28`}}>
-                  {item.specialty}
-                </span>
-                <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
-                <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>
-                  Publicado {item.time}
-                </span>
-                {item.duration && <>
-                  <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
-                  <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>{item.duration} min de leitura</span>
-                </>}
-              </div>
-
-              {/* 3. Author row */}
-              <div style={{display:"flex",alignItems:"center",gap:12,
-                paddingBottom:20,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
-                <Avatar name={item.author} size={42}/>
-                <div style={{flex:1,minWidth:0}}>
-                  <div style={{fontSize:14,fontWeight:700,color:"#111",lineHeight:1.2,
-                    whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{item.author}</div>
-                  <div style={{fontSize:12,color:"rgba(0,0,0,0.4)",marginTop:3}}>{item.specialty}</div>
-                </div>
-              </div>
-
-              {/* Intro / case description */}
-              {item.intro && (
-                <p style={{color:"rgba(0,0,0,0.72)",fontSize:14.5,lineHeight:1.78,
-                  margin:"20px 0 0"}}>{item.intro}</p>
-              )}
+        {/* Header info */}
+        <div style={{padding:"20px 20px 0"}}>
+          <h1 style={{color:"#0d0d0d",fontSize:22,fontWeight:800,lineHeight:1.32,
+            margin:"0 0 14px",letterSpacing:-0.4}}>
+            {item.title || item.q}
+          </h1>
+          <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:18,flexWrap:"wrap"}}>
+            <span style={{background:`${accentColor}18`,color:accentColor,borderRadius:20,
+              padding:"3px 10px",fontSize:11,fontWeight:700,border:`1px solid ${accentColor}28`}}>
+              {item.specialty}
+            </span>
+            <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
+            <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>
+              Publicado {item.time}
+            </span>
+            {item.duration && <>
+              <span style={{color:"rgba(0,0,0,0.3)",fontSize:12}}>•</span>
+              <span style={{color:"rgba(0,0,0,0.45)",fontSize:12,fontWeight:500}}>{item.duration} min de leitura</span>
+            </>}
+          </div>
+          <div style={{display:"flex",alignItems:"center",gap:12,
+            paddingBottom:20,borderBottom:"1px solid rgba(0,0,0,0.07)"}}>
+            <Avatar name={item.author} size={42}/>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:14,fontWeight:700,color:"#111",lineHeight:1.2,
+                whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{item.author}</div>
+              <div style={{fontSize:12,color:"rgba(0,0,0,0.4)",marginTop:3}}>{item.specialty}</div>
             </div>
+          </div>
+          {item.intro && (
+            <p style={{color:"rgba(0,0,0,0.72)",fontSize:14.5,lineHeight:1.78,
+              margin:"20px 0 0"}}>{item.intro}</p>
+          )}
+        </div>
 
-            {/* Case image */}
-            {item.img && (
-              <div style={{margin:"0 20px 20px",borderRadius:16,overflow:"hidden",
-                border:"1px solid rgba(0,0,0,0.07)"}}>
-                <img src={item.img} alt="Imagem do caso clínico"
-                  style={{width:"100%",display:"block",objectFit:"cover"}}/>
-                <div style={{padding:"8px 12px",background:"#f7f7f7",
-                  fontSize:11,color:"rgba(0,0,0,0.45)",fontStyle:"italic"}}>
-                  Figura 1. Lesão azulada — visão macroscópica e dermatoscópica
-                </div>
-              </div>
-            )}
-
-            {/* Question */}
-            <div style={{padding:`0 20px ${item.intro||item.img?"16px":"0"}`}}>
-              <p style={{color:"#0d0d0d",fontSize:16,fontWeight:800,lineHeight:1.45,
-                margin:"0 0 20px",letterSpacing:-0.2,
-                borderTop:item.intro||item.img?"1px solid rgba(0,0,0,0.07)":undefined,
-                paddingTop:item.intro||item.img?16:0}}>
-                {item.q}
-              </p>
+        {/* Case image */}
+        {item.img && (
+          <div style={{margin:"20px 20px 0",borderRadius:16,overflow:"hidden",
+            border:"1px solid rgba(0,0,0,0.07)"}}>
+            <img src={item.img} alt="Imagem do caso clínico"
+              style={{width:"100%",display:"block",objectFit:"cover"}}/>
+            <div style={{padding:"8px 12px",background:"#f7f7f7",
+              fontSize:11,color:"rgba(0,0,0,0.45)",fontStyle:"italic"}}>
+              Figura 1. Lesão azulada — visão macroscópica e dermatoscópica
             </div>
+          </div>
+        )}
 
-            {/* Options */}
-            <div style={{padding:"20px"}}>
-              {item.opts.map((opt,i) => {
-                const s = optionStyle(i);
-                return (
-                  <button key={i} onClick={()=>{ if(!submitted) setSelected(i); }}
-                    style={{display:"flex",alignItems:"flex-start",gap:14,width:"100%",
-                      background:s.bg,border:`1.5px solid ${s.border}`,borderRadius:16,
-                      padding:"16px",marginBottom:i<item.opts.length-1?10:0,
-                      cursor:submitted?"default":"pointer",textAlign:"left",transition:"all .2s"}}>
-                    <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
-                      width:32,height:32,borderRadius:"50%",background:s.badgeBg,
-                      color:s.badgeColor,fontSize:13,fontWeight:800,flexShrink:0}}>
-                      {QUIZ_LETTERS[i]}
-                    </span>
-                    <div style={{flex:1,minWidth:0,paddingTop:4}}>
-                      {s.label && (
-                        <div style={{fontSize:11,fontWeight:700,color:s.labelColor,marginBottom:5}}>
-                          {s.label}
-                        </div>
-                      )}
-                      <div style={{fontSize:14,fontWeight:600,color:"#111",lineHeight:1.4}}>{opt}</div>
+        {/* Question */}
+        <div style={{padding:"20px 20px 0"}}>
+          <p style={{color:"#0d0d0d",fontSize:16,fontWeight:800,lineHeight:1.45,
+            margin:0,letterSpacing:-0.2,
+            borderTop:item.intro||item.img?"1px solid rgba(0,0,0,0.07)":undefined,
+            paddingTop:item.intro||item.img?16:0}}>
+            {item.q}
+          </p>
+        </div>
+
+        {/* Options */}
+        <div style={{padding:"20px"}}>
+          {item.opts.map((opt,i) => {
+            const s = optionStyle(i);
+            return (
+              <button key={i} onClick={()=>{ if(!submitted) setSelected(i); }}
+                style={{display:"flex",alignItems:"flex-start",gap:14,width:"100%",
+                  background:s.bg,border:`1.5px solid ${s.border}`,borderRadius:16,
+                  padding:"16px",marginBottom:i<item.opts.length-1?10:0,
+                  cursor:submitted?"default":"pointer",textAlign:"left",transition:"all .2s"}}>
+                <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
+                  width:32,height:32,borderRadius:"50%",background:s.badgeBg,
+                  color:s.badgeColor,fontSize:13,fontWeight:800,flexShrink:0}}>
+                  {QUIZ_LETTERS[i]}
+                </span>
+                <div style={{flex:1,minWidth:0,paddingTop:4}}>
+                  {s.label && (
+                    <div style={{fontSize:11,fontWeight:700,color:s.labelColor,marginBottom:5}}>
+                      {s.label}
                     </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Submit / Refazer */}
-            <div style={{padding:"0 20px 20px"}}>
-              {!submitted ? (
-                <button onClick={()=>{ if(selected!==null) setSubmitted(true); }}
-                  style={{width:"100%",height:52,borderRadius:26,
-                    background:selected!==null?"#111":"rgba(0,0,0,0.08)",border:"none",
-                    color:selected!==null?"white":"rgba(0,0,0,0.3)",fontSize:15,fontWeight:700,
-                    cursor:selected!==null?"pointer":"default",transition:"all .2s"}}>
-                  Enviar resposta
-                </button>
-              ) : (
-                <button onClick={reset}
-                  style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,
-                    background:"none",border:"1.5px solid rgba(0,0,0,0.15)",borderRadius:26,
-                    padding:"14px 24px",fontSize:14,fontWeight:700,color:"#333",cursor:"pointer"}}>
-                  <span className="material-symbols-rounded" style={{fontSize:18}}>refresh</span>
-                  Refazer quiz
-                </button>
-              )}
-            </div>
-
-            {/* Result banner */}
-            {submitted && (
-              <div style={{margin:"0 20px 20px",borderRadius:16,padding:"16px",
-                background:isCorrect?"rgba(46,125,50,0.07)":"rgba(198,40,40,0.07)",
-                border:`1px solid ${isCorrect?"rgba(46,125,50,0.18)":"rgba(198,40,40,0.18)"}`,
-                display:"flex",alignItems:"center",gap:14}}>
-                <div style={{width:48,height:48,borderRadius:"50%",flexShrink:0,
-                  background:isCorrect?"#2e7d32":"#c62828",
-                  display:"flex",alignItems:"center",justifyContent:"center"}}>
-                  <span className="material-symbols-rounded" style={{fontSize:26,color:"white",
-                    fontVariationSettings:"'FILL' 1,'wght' 400"}}>
-                    {isCorrect?"celebration":"close"}
-                  </span>
+                  )}
+                  <div style={{fontSize:14,fontWeight:600,color:"#111",lineHeight:1.4}}>{opt}</div>
                 </div>
-                <div style={{flex:1}}>
-                  <div style={{fontSize:15,fontWeight:800,color:"#111",marginBottom:4}}>
-                    {isCorrect?"Excelente resultado!":"Continue praticando!"}
-                  </div>
-                  <div style={{fontSize:13,color:"rgba(0,0,0,0.55)",lineHeight:1.45}}>
-                    {isCorrect
-                      ? "Você teve um ótimo desempenho e mostrou domínio do conteúdo."
-                      : "Dessa vez você não acertou, mas cada Quiz é uma chance de aprender algo novo. Continue praticando e evoluindo!"}
-                  </div>
-                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Submit / Refazer */}
+        <div style={{padding:"0 20px 20px"}}>
+          {!submitted ? (
+            <button onClick={()=>{ if(selected!==null) setSubmitted(true); }}
+              style={{width:"100%",height:52,borderRadius:26,
+                background:selected!==null?"#111":"rgba(0,0,0,0.08)",border:"none",
+                color:selected!==null?"white":"rgba(0,0,0,0.3)",fontSize:15,fontWeight:700,
+                cursor:selected!==null?"pointer":"default",transition:"all .2s"}}>
+              Enviar resposta
+            </button>
+          ) : (
+            <button onClick={reset}
+              style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,
+                background:"none",border:"1.5px solid rgba(0,0,0,0.15)",borderRadius:26,
+                padding:"14px 24px",fontSize:14,fontWeight:700,color:"#333",cursor:"pointer"}}>
+              <span className="material-symbols-rounded" style={{fontSize:18}}>refresh</span>
+              Refazer quiz
+            </button>
+          )}
+        </div>
+
+        {/* Result banner */}
+        {submitted && (
+          <div style={{margin:"0 20px",padding:"40px 0",borderTop:"1px solid rgba(0,0,0,0.07)",display:"flex",alignItems:"flex-start",gap:14}}>
+            <img src={isCorrect?"/party.svg":"/circle-close.svg"} alt=""
+              style={{width:52,height:52,flexShrink:0,marginTop:2}}/>
+            <div style={{flex:1}}>
+              <div style={{fontSize:16,fontWeight:800,color:"#0d0d0d",marginBottom:5,letterSpacing:-0.2}}>
+                {isCorrect?"Excelente resultado!":"Continue praticando!"}
               </div>
-            )}
-
-            {/* Inline comment after submit */}
-            {submitted && item.comment && (
-              <div style={{margin:"0 20px 20px",padding:18,
-                background:"rgba(34,97,177,0.04)",borderRadius:16,
-                borderLeft:"3px solid #2261B1"}}>
-                <div style={{fontSize:13,fontWeight:800,color:"#2261B1",marginBottom:12,
-                  display:"flex",alignItems:"center",gap:6}}>
-                  <span className="material-symbols-rounded" style={{fontSize:16,
-                    fontVariationSettings:"'FILL' 0,'wght' 400"}}>clinical_notes</span>
-                  Comentário da questão
-                </div>
-                {item.comment.split("\n\n").map((p,i,arr)=>(
-                  <p key={i} style={{color:"rgba(0,0,0,0.72)",fontSize:13.5,lineHeight:1.78,
-                    margin:i<arr.length-1?"0 0 12px":0}}>{p}</p>
-                ))}
-                {item.commentRef && (
-                  <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(34,97,177,0.12)"}}>
-                    <p style={{fontSize:12,color:"rgba(0,0,0,0.45)",lineHeight:1.6,margin:0,fontStyle:"italic"}}>
-                      {item.commentRef}
-                    </p>
-                  </div>
-                )}
+              <div style={{fontSize:14,color:"rgba(0,0,0,0.55)",lineHeight:1.55}}>
+                {isCorrect
+                  ? "Você teve um ótimo desempenho e mostrou domínio do conteúdo."
+                  : "Dessa vez você não acertou, mas cada Quiz é uma chance de aprender algo novo. Continue praticando e evoluindo!"}
               </div>
-            )}
+            </div>
+          </div>
+        )}
 
-            {/* References */}
-            {refList.length > 0 && (
-              <div style={{margin:"0 20px 24px",paddingTop:16,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
-                <div style={{fontSize:13,fontWeight:800,color:"#111",marginBottom:14,
-                  display:"flex",alignItems:"center",gap:6}}>
-                  <span className="material-symbols-rounded" style={{fontSize:16,
-                    fontVariationSettings:"'FILL' 0,'wght' 400"}}>menu_book</span>
-                  Referências bibliográficas
-                </div>
-                {refList.map((ref,i)=>(
-                  <a key={i} href={ref.url} target="_blank" rel="noreferrer"
-                    style={{display:"flex",alignItems:"flex-start",gap:10,textDecoration:"none",
-                      padding:"10px 0",borderBottom:i<refList.length-1?"1px solid rgba(0,0,0,0.06)":"none"}}>
-                    <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
-                      width:22,height:22,borderRadius:"50%",background:`${accentColor}15`,
-                      fontSize:10,fontWeight:800,color:accentColor,flexShrink:0,marginTop:1}}>
-                      {i+1}
-                    </span>
-                    <span style={{color:"#2261B1",fontSize:12.5,fontWeight:500,
-                      lineHeight:1.55,wordBreak:"break-all"}}>
-                      {ref.label !== ref.url ? ref.label : ref.url}
-                    </span>
-                  </a>
-                ))}
+        {/* Inline comment after submit */}
+        {submitted && item.comment && (
+          <div style={{margin:"0 20px 20px",padding:18,
+            background:"rgba(34,97,177,0.04)",borderRadius:16,
+            borderLeft:"3px solid #2261B1"}}>
+            <div style={{fontSize:13,fontWeight:800,color:"#2261B1",marginBottom:12,
+              display:"flex",alignItems:"center",gap:6}}>
+              <span className="material-symbols-rounded" style={{fontSize:16,
+                fontVariationSettings:"'FILL' 0,'wght' 400"}}>clinical_notes</span>
+              Comentário da questão
+            </div>
+            {item.comment.split("\n\n").map((p,i,arr)=>(
+              <p key={i} style={{color:"rgba(0,0,0,0.72)",fontSize:13.5,lineHeight:1.78,
+                margin:i<arr.length-1?"0 0 12px":0}}>{p}</p>
+            ))}
+            {item.commentRef && (
+              <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(34,97,177,0.12)"}}>
+                <p style={{fontSize:12,color:"rgba(0,0,0,0.45)",lineHeight:1.6,margin:0,fontStyle:"italic"}}>
+                  {item.commentRef}
+                </p>
               </div>
             )}
           </div>
+        )}
+
+        {/* References */}
+        {refList.length > 0 && (
+          <div style={{margin:"0 20px 24px",paddingTop:16,borderTop:"1px solid rgba(0,0,0,0.07)"}}>
+            <div style={{fontSize:13,fontWeight:800,color:"#111",marginBottom:14,
+              display:"flex",alignItems:"center",gap:6}}>
+              <span className="material-symbols-rounded" style={{fontSize:16,
+                fontVariationSettings:"'FILL' 0,'wght' 400"}}>menu_book</span>
+              Referências bibliográficas
+            </div>
+            {refList.map((ref,i)=>(
+              <a key={i} href={ref.url} target="_blank" rel="noreferrer"
+                style={{display:"flex",alignItems:"flex-start",gap:10,textDecoration:"none",
+                  padding:"10px 0",borderBottom:i<refList.length-1?"1px solid rgba(0,0,0,0.06)":"none"}}>
+                <span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
+                  width:22,height:22,borderRadius:"50%",background:`${accentColor}15`,
+                  fontSize:10,fontWeight:800,color:accentColor,flexShrink:0,marginTop:1}}>
+                  {i+1}
+                </span>
+                <span style={{color:"#2261B1",fontSize:12.5,fontWeight:500,
+                  lineHeight:1.55,wordBreak:"break-all"}}>
+                  {ref.label !== ref.url ? ref.label : ref.url}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Bottom action bar */}
+      <div style={{flexShrink:0,background:"white",borderTop:"1px solid rgba(0,0,0,0.07)",
+        padding:"10px 20px 28px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+        <div style={{display:"flex",gap:10}}>
+          <button onClick={()=>setLiked(l=>!l)} style={{display:"flex",alignItems:"center",gap:6,
+            background:liked?"rgba(233,69,96,0.08)":"rgba(0,0,0,0.04)",
+            border:`1px solid ${liked?"rgba(233,69,96,0.25)":"rgba(0,0,0,0.09)"}`,
+            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:liked?"#e94560":"#555",transition:"all .2s"}}>
+            <span className="material-symbols-rounded" style={{fontSize:18,
+              fontVariationSettings:liked?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>favorite</span>
+            <span style={{fontSize:13,fontWeight:700}}>{(item.likes||0)+(liked?1:0)}</span>
+          </button>
+          <button onClick={()=>setSaved(s=>!s)} style={{display:"flex",alignItems:"center",gap:6,
+            background:saved?`${accentColor}0f`:"rgba(0,0,0,0.04)",
+            border:`1px solid ${saved?`${accentColor}35`:"rgba(0,0,0,0.09)"}`,
+            borderRadius:24,padding:"9px 18px",cursor:"pointer",color:saved?accentColor:"#555",transition:"all .2s"}}>
+            <span className="material-symbols-rounded" style={{fontSize:18,
+              fontVariationSettings:saved?"'FILL' 1,'wght' 400":"'FILL' 0,'wght' 300"}}>bookmark</span>
+            <span style={{fontSize:13,fontWeight:700}}>{(item.saves||0)+(saved?1:0)}</span>
+          </button>
         </div>
+        <button onClick={onShare} style={{display:"flex",alignItems:"center",gap:6,
+          background:"rgba(0,0,0,0.04)",border:"1px solid rgba(0,0,0,0.09)",
+          borderRadius:24,padding:"9px 18px",cursor:"pointer",color:"#555"}}>
+          <span className="material-symbols-rounded" style={{fontSize:18,
+            fontVariationSettings:"'FILL' 0,'wght' 300"}}>share</span>
+          <span style={{fontSize:13,fontWeight:700}}>Compartilhar</span>
+        </button>
       </div>
     </div>
   );
@@ -678,6 +717,8 @@ const QuizPage = ({ item, onClose }) => {
 const QuizCard = ({ item, onAuthorTap, onQuizTap }) => (
   <div style={{position:"relative",width:"100%",height:"100%",background:item.bg,
     display:"flex",flexDirection:"column",justifyContent:"center",padding:"100px 64px 100px 18px"}}>
+    <span style={{alignSelf:"flex-start",background:"white",borderRadius:20,padding:"3px 10px",
+      fontSize:11,fontWeight:800,color:"#111",marginBottom:10,letterSpacing:0.2}}>Quiz</span>
     <h2 style={{color:"white",fontSize:21,fontWeight:700,lineHeight:1.3,marginBottom:12,
       textShadow:"0 2px 16px rgba(0,0,0,0.5)"}}>{item.title || item.q}</h2>
     <AuthorMeta item={item} onAuthorTap={onAuthorTap}/>
@@ -696,11 +737,83 @@ const QuizCard = ({ item, onAuthorTap, onQuizTap }) => (
   </div>
 );
 
+const EndOfFeedCard = ({ onHistoryTap }) => (
+  <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,#0f2952 0%,#1a4080 45%,#2261B1 100%)",
+    display:"flex",flexDirection:"column",boxSizing:"border-box"}}>
+    {/* Centro: ícone + título + texto */}
+    <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+      padding:"80px 32px 0"}}>
+      <span className="material-symbols-rounded" style={{fontSize:52,color:"rgba(255,255,255,0.22)",marginBottom:22,
+        fontVariationSettings:"'FILL' 1,'wght' 400"}}>check_circle</span>
+      <h2 style={{color:"white",fontSize:26,fontWeight:800,textAlign:"center",margin:"0 0 12px",
+        letterSpacing:-0.5,lineHeight:1.25}}>
+        Por hoje é só!
+      </h2>
+      <p style={{color:"rgba(255,255,255,0.5)",fontSize:15,textAlign:"center",lineHeight:1.65,margin:0}}>
+        Estes foram os conteúdos selecionados para você no dia de hoje.
+      </p>
+    </div>
+    {/* Bottom: card âncora acima do BottomBar */}
+    <div style={{padding:"0 24px 120px"}}>
+      <button onClick={onHistoryTap} style={{width:"100%",background:"rgba(255,255,255,0.08)",
+        border:"1px solid rgba(255,255,255,0.14)",borderRadius:20,padding:"20px 22px",
+        textAlign:"left",cursor:"pointer",display:"flex",alignItems:"center",
+        justifyContent:"space-between",gap:12,backdropFilter:"blur(12px)"}}>
+        <div>
+          <div style={{color:"white",fontSize:16,fontWeight:700,marginBottom:5,lineHeight:1.3}}>
+            O que aconteceu nos últimos dias
+          </div>
+          <div style={{color:"rgba(255,255,255,0.45)",fontSize:14,lineHeight:1.55}}>
+            Continue rolando para ver os conteúdos mais relevantes dos últimos dias.
+          </div>
+        </div>
+        <span className="material-symbols-rounded" style={{fontSize:24,color:"rgba(255,255,255,0.4)",flexShrink:0}}>
+          arrow_downward
+        </span>
+      </button>
+    </div>
+  </div>
+);
+
+const RECOMMENDED_ARTICLES = [
+  { title:"Alterações metabólicas da SOMP: como influenciou a mudança de nome da síndrome", time:"27 mai 2026 · 3 min", img:"/somp.jpg", article:RECOMMENDED_FULL[0] },
+  { title:"Otimização da pressão arterial após AVC: novas fronteiras", time:"29 mai 2026 · 7 min", img:"/avc-pa.jpg", article:RECOMMENDED_FULL[1] },
+  { title:"Helicobacter pylori: ACG atualiza tratamento e resgate", time:"15 mai 2026 · 4 min", img:"/h-pylori.jpg", article:RECOMMENDED_FULL[2] },
+];
+
+const RecommendedCard = ({ onArticleTap }) => (
+  <div style={{width:"100%",height:"100%",background:"#0d0d0d",display:"flex",flexDirection:"column",
+    justifyContent:"center",padding:"0 24px",boxSizing:"border-box",overflowY:"auto"}}>
+    <div style={{paddingBottom:28}}>
+      <h2 style={{color:"#ffffff",fontSize:18,fontWeight:800,lineHeight:1.2,letterSpacing:-0.2,margin:0}}>
+        Você também pode se interessar
+      </h2>
+    </div>
+    {RECOMMENDED_ARTICLES.map((a, i) => (
+      <div key={i} onClick={()=>onArticleTap&&onArticleTap(a.article)}
+        style={{display:"flex",alignItems:"center",gap:16,cursor:"pointer",
+          paddingBottom:24,paddingTop:i>0?24:0,
+          borderBottom:i<RECOMMENDED_ARTICLES.length-1?"1px solid rgba(255,255,255,0.08)":"none"}}>
+        <div style={{flex:1}}>
+          <div style={{fontSize:15,fontWeight:600,color:"#ffffff",lineHeight:1.45,marginBottom:8}}>
+            {a.title}
+          </div>
+          <div style={{fontSize:12,color:"rgba(255,255,255,0.38)",fontWeight:500}}>{a.time}</div>
+        </div>
+        <div style={{width:80,height:80,borderRadius:14,flexShrink:0,overflow:"hidden"}}>
+          <img src={a.img} alt="" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const CardContent = ({ item, onAuthorTap, onRefsTap, onArticleTap, onQuizTap, active, isMuted }) => {
   if(!item) return null;
-  if(item.type==="video")   return <VideoCard   item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} active={active} isMuted={isMuted}/>;
-  if(item.type==="article") return <ArticleCard item={item} onAuthorTap={onAuthorTap} onArticleTap={onArticleTap}/>;
-  if(item.type==="quiz")    return <QuizCard    item={item} onAuthorTap={onAuthorTap} onQuizTap={onQuizTap}/>;
+  if(item.type==="video")       return <VideoCard   item={item} onAuthorTap={onAuthorTap} onRefsTap={onRefsTap} active={active} isMuted={isMuted}/>;
+  if(item.type==="article")     return <ArticleCard item={item} onAuthorTap={onAuthorTap} onArticleTap={onArticleTap}/>;
+  if(item.type==="quiz")        return <QuizCard    item={item} onAuthorTap={onAuthorTap} onQuizTap={onQuizTap}/>;
+  if(item.type==="recommended") return <RecommendedCard onArticleTap={onArticleTap}/>;
   return null;
 };
 
@@ -734,15 +847,22 @@ const SideActions = ({ item, isMuted, onToggleMute, onShareTap }) => {
   );
 };
 
-const NavBar = ({ active, setActive }) => (
-  <div style={{position:"absolute",top:0,left:0,right:0,zIndex:20,background:"linear-gradient(to bottom,rgba(0,0,0,0.65) 0%,transparent 100%)",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"18px 18px 32px"}}>
+const NavBar = ({ active, setActive, lightMode }) => (
+  <div style={{position:"absolute",top:0,left:0,right:0,zIndex:20,
+    background:lightMode?"transparent":"linear-gradient(to bottom,rgba(0,0,0,0.65) 0%,transparent 100%)",
+    display:"flex",alignItems:"center",justifyContent:"space-between",padding:"18px 18px 32px"}}>
     <div style={{display:"flex",gap:24}}>
       {["Descobrir","Aprender"].map(t=>(
-        <button key={t} onClick={()=>setActive(t)} style={{background:"none",border:"none",cursor:"pointer",color:active===t?"white":"rgba(255,255,255,0.4)",fontSize:15,fontWeight:active===t?700:400,padding:0,borderBottom:active===t?"2px solid white":"2px solid transparent",paddingBottom:4}}>{t}</button>
+        <button key={t} onClick={()=>setActive(t)} style={{background:"none",border:"none",cursor:"pointer",
+          color:lightMode?(active===t?"#0d0d0d":"rgba(0,0,0,0.3)"):(active===t?"white":"rgba(255,255,255,0.4)"),
+          fontSize:15,fontWeight:active===t?700:400,padding:0,
+          borderBottom:active===t?`2px solid ${lightMode?"#0d0d0d":"white"}`:"2px solid transparent",
+          paddingBottom:4}}>{t}</button>
       ))}
     </div>
     <button style={{background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:"6px",width:36,height:36}}>
-      {[0,1,2].map(i=><span key={i} style={{display:"block",width:20,height:1.8,background:"rgba(255,255,255,0.85)",borderRadius:2}}/>)}
+      {[0,1,2].map(i=><span key={i} style={{display:"block",width:20,height:1.8,
+        background:lightMode?"rgba(0,0,0,0.5)":"rgba(255,255,255,0.85)",borderRadius:2}}/>)}
     </button>
   </div>
 );
@@ -756,10 +876,16 @@ const TopTag = ({ specialty, time, accent }) => (
   </div>
 );
 
-const BottomBar = () => (
-  <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:20,background:"linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 100%)",padding:"28px 16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",pointerEvents:"none"}}>
+const BottomBar = ({ lightMode }) => (
+  <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:20,
+    background:lightMode?"rgba(255,255,255,0.92)":"linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 100%)",
+    backdropFilter:lightMode?"blur(12px)":"none",
+    padding:"16px 16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",pointerEvents:"none"}}>
     <div style={{width:56}}/>
-    <div style={{background:"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:28,height:56,padding:"0 22px",display:"flex",alignItems:"center",gap:6,color:"white",fontSize:12,cursor:"pointer",fontWeight:600,pointerEvents:"auto"}}>
+    <div style={{background:lightMode?"rgba(0,0,0,0.07)":"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",
+      border:lightMode?"1px solid rgba(0,0,0,0.1)":"1px solid rgba(255,255,255,0.2)",
+      borderRadius:28,height:56,padding:"0 22px",display:"flex",alignItems:"center",gap:6,
+      color:lightMode?"#0d0d0d":"white",fontSize:12,cursor:"pointer",fontWeight:600,pointerEvents:"auto"}}>
       <span>Para você</span>
       <span className="material-symbols-rounded" style={{fontSize:18,opacity:.6}}>expand_more</span>
     </div>
@@ -859,7 +985,7 @@ const ShareSheet = ({ onClose }) => {
     { label:"E-mail",     el:matIcon("mail") },
   ];
   return (
-    <div onClick={close} style={{position:"absolute",inset:0,zIndex:50,background:visible?"rgba(0,0,0,0.45)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(6px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
+    <div onClick={close} style={{position:"absolute",inset:0,zIndex:70,background:visible?"rgba(0,0,0,0.45)":"rgba(0,0,0,0)",backdropFilter:visible?"blur(6px)":"none",transition:"all .3s",display:"flex",alignItems:"flex-end"}}>
       <div onClick={e=>e.stopPropagation()} style={{width:"100%",borderRadius:"24px 24px 0 0",background:"#f5f5f5",transform:visible?`translateY(${dragY}px)`:"translateY(100%)",transition:dragY>0?"none":"transform .3s cubic-bezier(.32,1,.4,1)",padding:"0 22px 40px"}}>
         <div onMouseDown={onDS} onMouseMove={onDM} onMouseUp={onDE} onMouseLeave={onDE} onTouchStart={onDS} onTouchMove={onDM} onTouchEnd={onDE}
           style={{display:"flex",justifyContent:"center",padding:"12px 0 10px",cursor:"grab"}}>
@@ -998,13 +1124,19 @@ export default function MediFeed() {
     requestAnimationFrame(()=>{
       if(scrollRef.current){
         const idx = Math.round(scrollRef.current.scrollTop / H);
-        setVisibleIdx(Math.max(0, Math.min(CONTENT.length-1, idx)));
+        setVisibleIdx(Math.max(0, Math.min(CONTENT.length + EXTRA_CONTENT.length, idx)));
       }
       ticking.current = false;
     });
   }, []);
 
-  const item = CONTENT[visibleIdx] || CONTENT[0];
+  const isEndCard = visibleIdx === CONTENT.length;
+  const isRecommendedCard = visibleIdx === CONTENT.length + EXTRA_CONTENT.length;
+  const item = visibleIdx < CONTENT.length
+    ? CONTENT[visibleIdx]
+    : isEndCard
+      ? CONTENT[CONTENT.length-1]
+      : EXTRA_CONTENT[visibleIdx - CONTENT.length - 1] || CONTENT[CONTENT.length-1];
 
   if (!unlocked) return <LoginScreen onUnlock={() => setUnlocked(true)} />;
 
@@ -1049,15 +1181,28 @@ export default function MediFeed() {
               <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} onQuizTap={item=>setSheetQuiz(item)} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
+          <div style={{width:"100%",height:H,flexShrink:0,scrollSnapAlign:"start",scrollSnapStop:"always",position:"relative",overflow:"hidden"}}>
+            <EndOfFeedCard onHistoryTap={()=>{}}/>
+          </div>
+          {EXTRA_CONTENT.map((c, i) => {
+            const idx = CONTENT.length + 1 + i;
+            return (
+              <div key={`extra-${i}`} style={{width:"100%",height:H,flexShrink:0,
+                scrollSnapAlign:"start",scrollSnapStop:"always",
+                position:"relative",overflow:"hidden"}}>
+                <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} onQuizTap={item=>setSheetQuiz(item)} active={idx===visibleIdx} isMuted={isMuted}/>
+              </div>
+            );
+          })}
         </div>
 
         <NavBar active={navTab} setActive={setNavTab}/>
-        <TopTag specialty={item.specialty} time={item.time} accent={item.accent}/>
-        <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)}/>
+        {!isEndCard && !isRecommendedCard && <TopTag specialty={item.specialty} time={item.time} accent={item.accent}/>}
+        {!isEndCard && !isRecommendedCard && <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)}/>}
         <BottomBar/>
 
         <div style={{position:"absolute",right:5,top:"50%",transform:"translateY(-50%)",display:"flex",flexDirection:"column",gap:4,zIndex:5,pointerEvents:"none"}}>
-          {CONTENT.map((_,i)=>(
+          {[...CONTENT.map((_,i)=>i), CONTENT.length, ...EXTRA_CONTENT.map((_,i)=>CONTENT.length+1+i)].map(i=>(
             <div key={i} style={{width:3,height:i===visibleIdx?22:5,borderRadius:4,transition:"all .3s",
               background:i===visibleIdx?"white":"rgba(255,255,255,0.22)"}}/>
           ))}
@@ -1066,7 +1211,7 @@ export default function MediFeed() {
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
         {sheetArticle && <ArticlePage item={sheetArticle} onClose={()=>setSheetArticle(null)} onShare={()=>setSheetShare(true)}/>}
-        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>setSheetQuiz(null)}/>}
+        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>setSheetQuiz(null)} onShare={()=>setSheetShare(true)}/>}
         {sheetShare && <ShareSheet onClose={()=>setSheetShare(null)}/>}
       </div>
     </div>
