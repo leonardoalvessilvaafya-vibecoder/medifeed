@@ -1255,6 +1255,8 @@ export default function MediFeed() {
   const [showSaved, setShowSaved] = useState(false);
   const [savedItems, setSavedItems] = useState([]);
   const [isMuted, setIsMuted] = useState(true);
+  const [articleFromSaved, setArticleFromSaved] = useState(false);
+  const [quizFromSaved, setQuizFromSaved] = useState(false);
   const isSaved = (it) => savedItems.some(s => s.title === it.title);
   const toggleSave = (it) => setSavedItems(prev =>
     prev.some(s => s.title === it.title)
@@ -1345,7 +1347,7 @@ export default function MediFeed() {
             <div key={i} style={{width:"100%",height:H,flexShrink:0,
               scrollSnapAlign:"start",scrollSnapStop:"always",
               position:"relative",overflow:"hidden"}}>
-              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} onQuizTap={item=>setSheetQuiz(item)} active={i===visibleIdx} isMuted={isMuted}/>
+              <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>{setSheetArticle(item);setArticleFromSaved(false);}} onQuizTap={item=>{setSheetQuiz(item);setQuizFromSaved(false);}} active={i===visibleIdx} isMuted={isMuted}/>
             </div>
           ))}
           <div style={{width:"100%",height:H,flexShrink:0,scrollSnapAlign:"start",scrollSnapStop:"always",position:"relative",overflow:"hidden"}}>
@@ -1357,7 +1359,7 @@ export default function MediFeed() {
               <div key={`extra-${i}`} style={{width:"100%",height:H,flexShrink:0,
                 scrollSnapAlign:"start",scrollSnapStop:"always",
                 position:"relative",overflow:"hidden"}}>
-                <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>setSheetArticle(item)} onQuizTap={item=>setSheetQuiz(item)} active={idx===visibleIdx} isMuted={isMuted}/>
+                <CardContent item={c} onAuthorTap={()=>setSheetAuthor(c.author)} onRefsTap={()=>setSheetRefs(c.refs)} onArticleTap={item=>{setSheetArticle(item);setArticleFromSaved(false);}} onQuizTap={item=>{setSheetQuiz(item);setQuizFromSaved(false);}} active={idx===visibleIdx} isMuted={isMuted}/>
               </div>
             );
           })}
@@ -1377,11 +1379,11 @@ export default function MediFeed() {
 
         {sheetAuthor && <AuthorSheet name={sheetAuthor} onClose={()=>setSheetAuthor(null)}/>}
         {sheetRefs && <RefsSheet refs={sheetRefs} onClose={()=>setSheetRefs(null)}/>}
-        {sheetArticle && <ArticlePage item={sheetArticle} onClose={()=>setSheetArticle(null)} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetArticle)} onSave={()=>toggleSave(sheetArticle)}/>}
-        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>setSheetQuiz(null)} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetQuiz)} onSave={()=>toggleSave(sheetQuiz)}/>}
+        {sheetArticle && <ArticlePage item={sheetArticle} onClose={()=>{ setSheetArticle(null); if(articleFromSaved) setShowSaved(true); }} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetArticle)} onSave={()=>toggleSave(sheetArticle)}/>}
+        {sheetQuiz && <QuizPage item={sheetQuiz} onClose={()=>{ setSheetQuiz(null); if(quizFromSaved) setShowSaved(true); }} onShare={()=>setSheetShare(true)} isSaved={isSaved(sheetQuiz)} onSave={()=>toggleSave(sheetQuiz)}/>}
         {sheetShare && <ShareSheet onClose={()=>setSheetShare(null)}/>}
         {showProfile && <ProfileMenu onClose={()=>setShowProfile(false)} onSavedTap={()=>setShowSaved(true)}/>}
-        {showSaved && <SavedPage items={savedItems} onClose={()=>setShowSaved(false)} onArticleTap={it=>{setShowSaved(false);setShowProfile(false);setSheetArticle(it);}} onQuizTap={it=>{setShowSaved(false);setShowProfile(false);setSheetQuiz(it);}}/>}
+        {showSaved && <SavedPage items={savedItems} onClose={()=>setShowSaved(false)} onArticleTap={it=>{setShowSaved(false);setShowProfile(false);setSheetArticle(it);setArticleFromSaved(true);}} onQuizTap={it=>{setShowSaved(false);setShowProfile(false);setSheetQuiz(it);setQuizFromSaved(true);}}/>}
       </div>
     </div>
   );
