@@ -1034,24 +1034,6 @@ const TopTag = ({ specialty, time, accent }) => (
   </div>
 );
 
-const BottomBar = ({ lightMode }) => (
-  <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:20,
-    background:lightMode?"rgba(255,255,255,0.92)":"linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 100%)",
-    backdropFilter:lightMode?"blur(12px)":"none",
-    padding:"16px 16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",pointerEvents:"none"}}>
-    <div style={{width:56}}/>
-    <div style={{background:lightMode?"rgba(0,0,0,0.07)":"rgba(255,255,255,0.1)",backdropFilter:"blur(16px)",
-      border:lightMode?"1px solid rgba(0,0,0,0.1)":"1px solid rgba(255,255,255,0.2)",
-      borderRadius:28,height:56,padding:"0 22px",display:"flex",alignItems:"center",gap:6,
-      color:lightMode?"#0d0d0d":"white",fontSize:12,cursor:"pointer",fontWeight:600,pointerEvents:"auto"}}>
-      <span>Para você</span>
-      <span className="material-symbols-rounded" style={{fontSize:18,opacity:.6}}>expand_more</span>
-    </div>
-    <button style={{background:"rgba(255,255,255,0.08)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.15)",borderRadius:"50%",width:56,height:56,cursor:"pointer",color:"white",display:"flex",alignItems:"center",justifyContent:"center",pointerEvents:"auto"}}>
-      <span className="material-symbols-rounded" style={{fontSize:22}}>tune</span>
-    </button>
-  </div>
-);
 
 const AuthorSheet = ({ name, onClose }) => {
   const info = AUTHORS[name] || { bio:"Informações não disponíveis." };
@@ -1368,7 +1350,6 @@ export default function MediFeed() {
         <NavBar active={navTab} setActive={setNavTab} onMenuTap={()=>setShowProfile(true)}/>
         {!isEndCard && !isRecommendedCard && <TopTag specialty={item.specialty} time={item.time} accent={item.accent}/>}
         {!isEndCard && !isRecommendedCard && <SideActions item={item} isMuted={isMuted} onToggleMute={toggleMute} onShareTap={()=>setSheetShare(true)} isSaved={isSaved(item)} onSave={()=>toggleSave(item)}/>}
-        <BottomBar/>
 
         <div style={{position:"absolute",right:5,top:"50%",transform:"translateY(-50%)",display:"flex",flexDirection:"column",gap:4,zIndex:5,pointerEvents:"none"}}>
           {[...CONTENT.map((_,i)=>i), CONTENT.length, ...EXTRA_CONTENT.map((_,i)=>CONTENT.length+1+i)].map(i=>(
