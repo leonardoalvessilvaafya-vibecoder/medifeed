@@ -256,7 +256,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           </div>
         </div>
       )}
-      <div onClick={e=>e.stopPropagation()} style={{position:"absolute",bottom:112,left:18,right:64,zIndex:3}}>
+      <div onClick={e=>e.stopPropagation()} style={{position:"absolute",bottom:44,left:18,right:64,zIndex:3}}>
         {item.refs && <button onClick={e=>{e.stopPropagation();onRefsTap&&onRefsTap();}} style={{display:"inline-flex",alignItems:"center",gap:4,marginBottom:10,background:"none",border:"none",padding:0,cursor:"pointer",color:"rgba(255,255,255,0.55)",fontSize:11,fontWeight:600}}>
           <span className="material-symbols-rounded" style={{fontSize:14,fontVariationSettings:"'FILL' 0,'wght' 300"}}>menu_book</span>Referências
         </button>}
@@ -269,7 +269,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           ref={seekBarRef}
           onPointerDown={handleSeekDown}
           onClick={e => e.stopPropagation()}
-          style={{position:"absolute",bottom:80,left:18,right:18,zIndex:25,
+          style={{position:"absolute",bottom:12,left:18,right:18,zIndex:25,
             padding:"10px 0",cursor:"pointer",touchAction:"none"}}
         >
           {isSeeking && (
@@ -826,7 +826,7 @@ const SideActions = ({ item, isMuted, onToggleMute, onShareTap, isSaved, onSave 
   const [liked,setLiked]=useState(false);
   const isVideo=item.type==="video";
   return (
-    <div style={{position:"absolute",right:14,bottom:108,zIndex:30,display:"flex",flexDirection:"column",gap:22,alignItems:"center"}}>
+    <div style={{position:"absolute",right:14,bottom:40,zIndex:30,display:"flex",flexDirection:"column",gap:22,alignItems:"center"}}>
       {isVideo && (
         <button onClick={onToggleMute} style={{background:"rgba(255,255,255,0.08)",backdropFilter:"blur(12px)",border:"1px solid rgba(255,255,255,0.15)",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
           <span className="material-symbols-rounded" style={{fontSize:22,fontVariationSettings:"'FILL' 0,'wght' 300"}}>{isMuted?"volume_off":"volume_up"}</span>
