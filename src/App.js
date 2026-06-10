@@ -1152,7 +1152,7 @@ const ShareSheet = ({ onClose }) => {
 
 const PASS = "TesteDescobrir2026Jun";
 
-const LoginScreen = ({ onUnlock }) => {
+const LoginScreen = ({ onUnlock, scale = 1 }) => {
   const [value, setValue] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
@@ -1169,8 +1169,10 @@ const LoginScreen = ({ onUnlock }) => {
   };
 
   return (
-    <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
-      <div style={{width:393,height:852,borderRadius:44,overflow:"hidden",position:"relative",
+    <div style={{position:"fixed",inset:0,overflow:"hidden",background:"#0a1628"}}>
+      <div style={{position:"absolute",top:0,left:"50%",transformOrigin:"top center",
+        transform:`translateX(-50%) scale(${scale})`,
+        width:393,height:852,borderRadius:44,overflow:"hidden",
         boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)",
         background:"linear-gradient(160deg,#0a1628 0%,#0d2140 50%,#0a1628 100%)",
         display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 36px"}}>
@@ -1226,6 +1228,7 @@ const LoginScreen = ({ onUnlock }) => {
 
 export default function MediFeed() {
   const [unlocked, setUnlocked] = useState(false);
+  const [scale, setScale] = useState(() => Math.min(window.innerHeight / H, window.innerWidth / 393));
   const [visibleIdx, setVisibleIdx] = useState(0);
   const [navTab, setNavTab] = useState("Descobrir");
   const [sheetAuthor, setSheetAuthor] = useState(null);
@@ -1247,6 +1250,12 @@ export default function MediFeed() {
   );
   const scrollRef = useRef(null);
   const ticking = useRef(false);
+
+  useEffect(() => {
+    const update = () => setScale(Math.min(window.innerHeight / H, window.innerWidth / 393));
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   const toggleMute = useCallback(() => {
     setIsMuted(m => !m);
@@ -1289,11 +1298,13 @@ export default function MediFeed() {
       ? CONTENT[CONTENT.length-1]
       : EXTRA_CONTENT[visibleIdx - CONTENT.length - 1] || CONTENT[CONTENT.length-1];
 
-  if (!unlocked) return <LoginScreen onUnlock={() => setUnlocked(true)} />;
+  if (!unlocked) return <LoginScreen onUnlock={() => setUnlocked(true)} scale={scale} />;
 
   return (
-    <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",padding:"16px 0 24px",background:"transparent"}}>
-      <div style={{width:393,height:H,borderRadius:44,overflow:"hidden",position:"relative",
+    <div style={{position:"fixed",inset:0,overflow:"hidden",background:"#111"}}>
+      <div style={{position:"absolute",top:0,left:"50%",transformOrigin:"top center",
+        transform:`translateX(-50%) scale(${scale})`,
+        width:393,height:H,borderRadius:44,overflow:"hidden",position:"relative",
         boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)"}}>
 
         <div ref={scrollRef} onScroll={handleScroll}
