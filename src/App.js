@@ -1304,7 +1304,7 @@ export default function MediFeed() {
     <div style={{position:"fixed",inset:0,overflow:"hidden",background:"#111"}}>
       <div style={{position:"absolute",top:0,left:"50%",transformOrigin:"top center",
         transform:`translateX(-50%) scale(${scale})`,
-        width:393,height:H,borderRadius:44,overflow:"hidden",position:"relative",
+        width:393,height:H,borderRadius:44,overflow:"hidden",
         boxShadow:"0 32px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.08)"}}>
 
         <div ref={scrollRef} onScroll={handleScroll}
