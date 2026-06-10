@@ -1150,6 +1150,48 @@ const ShareSheet = ({ onClose }) => {
   );
 };
 
+const TOAST_RING_C = 2 * Math.PI * 11;
+
+const Toast = ({ message, onDismiss }) => {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    requestAnimationFrame(() => setVisible(true));
+    const t = setTimeout(() => { setVisible(false); setTimeout(onDismiss, 280); }, 3000);
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const dismiss = () => { setVisible(false); setTimeout(onDismiss, 280); };
+  return (
+    <div style={{position:"absolute",bottom:88,left:14,right:14,zIndex:200,
+      transform:visible?"translateY(0)":"translateY(20px)",
+      opacity:visible?1:0,
+      transition:"transform 0.28s cubic-bezier(.32,1,.4,1),opacity 0.28s ease",
+      pointerEvents:"auto"}}>
+      <div style={{background:"#585959",borderRadius:20,padding:"11px 12px",
+        display:"flex",alignItems:"center",gap:12,
+        boxShadow:"0 8px 32px rgba(0,0,0,0.5),0 2px 8px rgba(0,0,0,0.3)"}}>
+        <div style={{width:38,height:38,borderRadius:11,background:"#2E7D32",
+          display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+          <span className="material-symbols-rounded"
+            style={{fontSize:22,color:"white",fontVariationSettings:"'FILL' 1,'wght' 600"}}>check</span>
+        </div>
+        <span style={{flex:1,color:"white",fontSize:13.5,fontWeight:600,lineHeight:1.3}}>{message}</span>
+        <button onClick={dismiss} style={{background:"none",border:"none",cursor:"pointer",
+          padding:0,position:"relative",width:30,height:30,
+          display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+          <svg width="30" height="30" style={{position:"absolute",top:0,left:0,transform:"rotate(-90deg)"}}>
+            <circle cx="15" cy="15" r="11" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2"/>
+            <circle cx="15" cy="15" r="11" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="2"
+              strokeDasharray={TOAST_RING_C} strokeLinecap="round"
+              style={{animation:"toastRing 3s linear forwards"}}/>
+          </svg>
+          <span className="material-symbols-rounded"
+            style={{fontSize:13,color:"rgba(255,255,255,0.7)",fontVariationSettings:"'FILL' 0,'wght' 400"}}>close</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const PASS = "TesteDescobrir2026Jun";
 
 const LoginScreen = ({ onUnlock, scale = 1 }) => {
@@ -1242,12 +1284,13 @@ export default function MediFeed() {
   const [isMuted, setIsMuted] = useState(true);
   const [articleFromSaved, setArticleFromSaved] = useState(false);
   const [quizFromSaved, setQuizFromSaved] = useState(false);
+  const [toast, setToast] = useState(null);
   const isSaved = (it) => savedItems.some(s => s.title === it.title);
-  const toggleSave = (it) => setSavedItems(prev =>
-    prev.some(s => s.title === it.title)
-      ? prev.filter(s => s.title !== it.title)
-      : [...prev, it]
-  );
+  const toggleSave = (it) => {
+    const wasSaved = savedItems.some(s => s.title === it.title);
+    setSavedItems(prev => wasSaved ? prev.filter(s => s.title !== it.title) : [...prev, it]);
+    setToast({ msg: wasSaved ? "Removido dos conteúdos salvos." : "Seu conteúdo foi salvo.", key: Date.now() });
+  };
   const scrollRef = useRef(null);
   const ticking = useRef(false);
 
@@ -1273,6 +1316,7 @@ export default function MediFeed() {
       .material-symbols-rounded{font-family:'Material Symbols Rounded'!important;}
       *{-webkit-user-select:none;user-select:none;}
       @keyframes feedbackFade{0%{opacity:0;filter:blur(10px);transform:scale(0.8)}15%{opacity:1;filter:blur(0px);transform:scale(1)}70%{opacity:1;filter:blur(0px);transform:scale(1)}100%{opacity:0;filter:blur(10px);transform:scale(1.15)}}
+      @keyframes toastRing{from{stroke-dashoffset:0}to{stroke-dashoffset:${TOAST_RING_C}}}
     `;
     document.head.appendChild(s);
     return()=>{els.forEach(l=>document.head.removeChild(l));document.head.removeChild(s);};
@@ -1376,6 +1420,7 @@ export default function MediFeed() {
         {sheetShare && <ShareSheet onClose={()=>setSheetShare(null)}/>}
         {showProfile && <ProfileMenu onClose={()=>setShowProfile(false)} onSavedTap={()=>setShowSaved(true)}/>}
         {showSaved && <SavedPage items={savedItems} onClose={()=>setShowSaved(false)} onArticleTap={it=>{setShowSaved(false);setShowProfile(false);setSheetArticle(it);setArticleFromSaved(true);}} onQuizTap={it=>{setShowSaved(false);setShowProfile(false);setSheetQuiz(it);setQuizFromSaved(true);}}/>}
+        {toast && <Toast key={toast.key} message={toast.msg} onDismiss={()=>setToast(null)}/>}
       </div>
     </div>
   );
