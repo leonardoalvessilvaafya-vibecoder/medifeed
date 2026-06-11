@@ -269,7 +269,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
           ref={seekBarRef}
           onPointerDown={handleSeekDown}
           onClick={e => e.stopPropagation()}
-          style={{position:"absolute",bottom:12,left:18,right:18,zIndex:25,
+          style={{position:"absolute",bottom:20,left:18,right:18,zIndex:25,
             padding:"10px 0",cursor:"pointer",touchAction:"none"}}
         >
           {isSeeking && (
@@ -290,8 +290,8 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
               {formatTime(seekTime)}
             </div>
           )}
-          <div style={{position:"relative",width:"100%",height:isSeeking?5:3,
-            background:"rgba(255,255,255,0.28)",transition:"height .15s",borderRadius:4}}>
+          <div style={{position:"relative",width:"100%",height:isSeeking?6:4,
+            background:"rgba(255,255,255,0.38)",transition:"height .15s",borderRadius:4}}>
             <div style={{position:"absolute",left:0,top:0,bottom:0,
               width:`${progress*100}%`,
               background:"linear-gradient(to right,#CD1C61,#3A439C)",
@@ -301,7 +301,7 @@ const VideoCard = ({ item, onAuthorTap, onRefsTap, active, isMuted }) => {
               left:`${progress*100}%`,
               top:"50%",
               transform:"translate(-50%,-50%)",
-              width:isSeeking?16:12,height:isSeeking?16:12,
+              width:isSeeking?18:14,height:isSeeking?18:14,
               borderRadius:"50%",background:"white",
               boxShadow:"0 2px 8px rgba(0,0,0,0.5)",
               border:"2px solid #CD1C61",
